@@ -1,0 +1,278 @@
+//---------------------------Communication--------------------------
+
+//I'm going to level with you, I don't really get a lot of what's going on in this .dic file. I'm pretty sure it's related to having ghosts talk to each other, or acknowledge each other's presence in some way, but I don't really know. If someone else knows more about this than I do, I'd love to hear about it, but for now, leave it all alone except for a few lines near the bottom.
+
+
+//communicate would be what says to Azura if she can communicate with a ghost or not, 0 is not, 1 is yes.
+
+
+
+OnCommunicate
+ {
+	if reference0 == "user" || reference0 == "User"
+ 	{
+ 		ReplyToUser
+	}
+ 	else
+	{
+		if conversation[1] != reference0
+		{
+			nbconv = 0
+		}
+		conversation[1] = "%(reference0)"
+ 		if OnCheckStatus
+		{	
+			if nbconv < 1
+			{
+				res_reference0 = reference0
+				if reference1[0] == conversation[2]
+				{
+					nbconv++
+				}
+				conversation[1] = "%(reference0)"
+				conversation[2] = "%(reference1)"
+				speech = TOLOWER(SPLIT("%(reference1)","\e")[0])
+				speechtag = SPLIT("%(reference1)","\e")[1]
+				
+				if STRLEN(speechtag) > 4
+				{
+					ReplyWithPing
+				}
+				else
+				{
+					ReplyToGhost
+				}				
+			}
+			else
+			{
+				conversation[0] = IARRAY
+				conversation[0] = "ready"
+			}			
+		}
+		else
+		{
+			ghostcommunicated ,= "%(reference0)"
+			ghostcommunicated ,= "%(reference1)"
+			
+		}
+ 	}
+	SAVEVAR
+}
+
+ReplyToUser
+{
+	TalkToUser
+}
+
+
+//Azura responding to other ghosts
+ReplyToGhost
+{
+	if conversation[0] != "started"
+	{
+		conversation[0] = "misunderstood"
+		if "hi" _in_ speech || "hello" _in_ speech || "howdy" _in_ speech || "good morning" _in_ speech || "good afternoon" _in_ speech || "good evening" _in_ speech || "good night" _in_ speech
+		{
+			conversation[0] = "ready"
+			if worried == 1
+			{
+				"\1\i[127]\i[128]\i[62]%(garmsup)Hi!!!\n"
+			}
+			else
+			{
+				"\0%(zpose)%(zwondering)Mmh?\n"
+			}
+		}
+		--
+		if "who are you" _in_ speech || "what's your name" _in_ speech || "what is your name" _in_ speech
+		{
+			conversation[0] = "ready"
+			if worried == 1
+			{
+				if discovered == 1
+				{
+					"\1\i[127]\i[128]\i[62]%(arms)Am a robot!!!\n"
+				}
+				else
+				{
+					"\1\i[127]\i[128]\i[62]%(arms)Am a doggy!!!\n"
+				}
+			}
+			else
+			{
+				"\0%(zpose)%(zwondering)\i[2001](He doesn't respond.)\n"
+			}
+		}
+		--
+		if "how are you" _in_ speech || "howzit goin" _in_ speech
+		{
+			conversation[0] = "ready"
+			if worried == 1
+			{
+				"\1\i[127]\i[128]\i[62]%(arms)Am feelin good!!!\n"
+			}
+			else
+			{
+				"\0%(zpose)%(zwondering)\i[2001](He is ignoring %(conversation[1]))\n"
+			}
+		}
+		--
+		if conversation[0] != "ready"
+		{
+			nbconv++
+		}
+		conversation[0] =  "ready"
+	}
+	else
+	{
+		conversation[0] = "misunderstood"
+		if "hi" _in_ speech || "hello" _in_ speech || "howdy" _in_ speech || "good morning" _in_ speech || "good afternoon" _in_ speech || "good evening" _in_ speech || "good night" _in_ speech
+		{
+			conversation[0] = "started"
+			if worried == 1
+			{
+				"\1\i[127]\i[128]\i[62]%(garmsup)Hi!!!\n"
+			}
+			else
+			{
+				"\0%(zpose)%(zwondering)Mmh?\n"
+			}
+		}
+		--
+		if "who are you" _in_ speech || "what's your name" _in_ speech || "what is your name" _in_ speech
+		{
+			conversation[0] = "started"
+			if worried == 1
+			{
+				if discovered == 1
+				{
+					"\1\i[127]\i[128]\i[62]%(arms)Am a robot!!!\n"
+				}
+				else
+				{
+					"\1\i[127]\i[128]\i[62]%(arms)Am a doggy!!!\n"
+				}
+			}
+			else
+			{
+				"\0%(zpose)%(zwondering)\i[2001](He doesn't respond.)\n"
+			}
+		}
+		--
+		if "how are you" _in_ speech || "howzit goin" _in_ speech
+		{
+			conversation[0] = "started"
+			if worried == 1
+			{
+				"\1\i[127]\i[128]\i[62]%(arms)Am feelin good!!!\n"
+			}
+			else
+			{
+				"\0%(zpose)%(zwondering)\i[2001](He is ignoring %(conversation[1]))\n"
+			}
+		}
+				
+		if conversation[0] != "started"
+		{
+			nbconv++
+		}
+		conversation[0] =  "started"
+	}
+
+
+	--
+	"\e"
+	//ghostcommunicated = IARRAY
+}
+
+ReplyWithPing
+{
+	
+}
+
+
+//The closing balloon functions
+OnBalloonBreak
+{
+	RespondToCommunication
+}
+
+OnBalloonClose
+{
+	RespondToCommunication
+}
+
+OnBalloonTimeout
+{
+	RespondToCommunication
+}
+
+RespondToCommunication
+{
+	//communicate = 0
+	if ARRAYSIZE(ghostcommunicated) > 0 && OnCheckStatus
+	{
+		if nbconv < 1
+		{
+			res_reference0 = ghostcommunicated[0]
+			if ghostcommunicated[1] == conversation[2]
+			{
+				nbconv++
+			}
+			else
+			{
+				truc = ghostcommunicated[1]
+				retruc =conversation[2]
+			}
+			conversation[1] = "%(ghostcommunicated[0])"
+			conversation[2] = "%(ghostcommunicated[1])"
+			speech = TOLOWER(SPLIT("%(ghostcommunicated[1])","\e")[0])
+			speechtag = SPLIT("%(ghostcommunicated[1])","\e")[1]
+			
+			if STRLEN(speechtag) > 4
+			{
+				ReplyWithPing
+			}
+			else
+			{
+				ReplyToGhost
+			}				
+		}
+		else
+		{
+			conversation = IARRAY
+			conversation[0] = "ready"
+		}
+		_temp = IARRAY
+		for _i = 2; _i < ARRAYSIZE(ghostcommunicated);_i++
+		{
+			_temp ,= ghostcommunicated[_i]
+		}
+		ghostcommunicated = _temp
+		
+	}
+	elseif conversation[0] == "interrupting"
+	{
+		
+		res_reference0 = "%(conversation[1])"
+		"%(conversation[2])"
+		conversation = IARRAY
+		conversation = "started"
+		
+	}
+}
+
+ 
+OnOtherGhostTalk
+{
+	
+}
+
+OnOtherGhostChanged
+{
+	
+}
+
+OnOtherGhostClosed
+{
+}

@@ -1,0 +1,728 @@
+//---------------------------Anchors and OnTranslate--------------------------
+
+//This .dic file is for setting up anchor words, which are links to set conversations attached to certain words automatically. It also deals with OnTranslate, which is a fairly unique function. All text goes through OnTranslate first before it displays on your ghost, which is how it knows to turn certain words into links. Before you try it yourself, I've already tried adding automatic \w8 pauses after periods and that totally breaks everything.
+//Why should I care about anchor words, you ask? Or what can I use them for? Well, you can set up anchor words to easy explanations for things your ghost might talk about that might confuse your user. People they know, places they've been, pop culture references the user might not get, information about you the creator or the world the characters from, items in an item menu, basically any number of things. Anchor words can be a handy repository of information! Or just an easy way to set up some cheap jokes. The power is yours!
+
+//Make sure to read the walkthrough (http://www.ashido.com/ukagaka/walkthrough.html) for more details about how to properly format ghost dialogue!
+//I will reiterate that you should be editing these in Notepad++, and in particular, you should set the Language to C to properly highlight all the text. It will make things A LOT EASIER for you, trust me! It will also help you keep track of your brackets in case you forget some. If you click on a line with a bracket in Notepad++, it should highlight where the other bracket ends, or turn purple if there's no finishing bracket (which you should definitely fix!)
+//It will also highlight my commented lines in green, so you'll know where they are. Any line beginning with // is a commented line that the code will not read. It's just for your reference!
+
+//This file is very short, so don't worry! And if you aren't planning on using anchor words, you just have to delete a few things and you'll be done!
+
+
+//--OnTranslate
+
+//As I said above, OnTranslate filters through all the text your ghost displays and does whatever you specify to it. This is a powerful function that can be used in a lot of creative ways I bet, but I wouldn't mess with it too much since you can pretty easily break stuff.
+//If you're not interested in any anchor words, delete all the lines that start with _talk = REPLACE under OnTranslate.
+
+OnTranslate
+{
+	_talk = reference0
+ 	
+	if reference1 == "" && reference2 == ""	
+	{ //send input box : no event (ref2) , no special flag (ref1)
+		_talk = EVAL('"' + REPLACE(_talk,'"','" + CHR(0x22) + "') + '"')
+	}
+	
+	_temptalk = SPLIT(_talk,"[st]")
+	
+	if ARRAYSIZE(_temptalk) > 1
+	{
+		_talk = ""
+		for _i = 0; _i < ARRAYSIZE(_temptalk);_i++
+		{
+			if _i%2 == 1
+			{
+				_talk += simultanateTalk(_temptalk[_i])
+			}
+			else
+			{
+				_talk += _temptalk[_i]
+			}
+		}
+	}
+	_talk = HandleAnimations(_talk)
+	
+   _talk
+}
+
+//--OnAnchorSelect
+//OnAnchorSelect runs whenever someone clicks one of the links as specified above, or a link that begins with http://.
+
+OnAnchorSelect
+{
+	if "http://" _in_ reference0 || "https://" _in_ reference0//checking to see if the link is a web address
+	{
+	"\j[%(reference0)]\e" // \j is a tag that will open a specified url in the user's browser of choice. This basically just tells the ghost to open the webpage stored in reference0, which would be the address that the user just clicked. I didn't get too much into \j in the walkthrough page because I have literally never used it except here.
+	}
+	else //if it's NOT a web address
+	{
+		case reference0 //case is a unique thing I've only really seen here in anchor.dic, and as far as I can tell it sets up reference0 for evaluation to see if matches any of the below criteria, which are all tagged with when. I wouldn't mess with much of this stuff unless you have a better grasp of this kind of thing than I do, haha. You can add as many things here as you want to set up above as long as you follow the basic format.
+		{
+			//It's if the user want to change the playing mode. This will reset the playlists already read except for randomly because if the user doesn't want to quit the random mode, the player will continue to play normally.
+			when "Irkens"
+			{
+				"\0%(zfrontpose)%(zsatisfiedface)%(zexplainarms)\i[100]I'm an irken invader.\w7 %(zrelaxedarms)Irk's my homeworld.\e"
+				"\0%(zfrontpose)%(zsatisfiedface)%(zexplainarms)\i[100]Us Irkens like conquest."
+				"\0%(zfrontpose)%(zplotting)\i[100]Soon this planet will be part of the great Irken Empire."
+				askedirkens = 1
+			}
+			when "Dib"
+			{
+				if discovered == 1
+				{
+					"\0%(zpose)%(zboredeyes)%(zexplainarms)%(zsmile)\i[100]He goes to skool too. \w7He knows who I am and wants to stop me %(zsatisfiedsmile)but I'll always eventually success.\e"
+				}
+				"\0%(zpose)%(zboredeyes)%(zexplainarms)%(zsmile)\i[100]He is just a %(filthy) human going to school too."
+				"\0%(zpose)%(zboredeyes)%(zexplainarms)%(zsmile)\i[100]He is a %(filthy) human whose main activity is annoying me."
+				askeddib = 1
+			}
+			when "Gaz"
+			{
+				"\0%(zpose)%(zboredeyes)%(zexplainarms)%(zsmile)\i[100]She goes to skool too. \w7She is \_a[Dib]Dib\_a's sister.\e"
+				"\0%(zpose)%(zboredeyes)%(zexplainarms)%(zsmile)\i[100]She is a scary human,\w5 she goes to school too."
+				askedgaz = 1
+			}
+			when "Voot"
+			{
+				"\0%(zpose)%(zboredeyes)%(zexplainarms)%(zsmile)\i[100]The Voot Cruiser is my ship."
+				"\0%(zpose)%(zboredeyes)%(zexplainarms)%(zsmile)\i[100]The Voot Cruiser is an irken ship."
+				"\0%(zpose)%(zgreat)\i[100]It's an example of how superior Irken technologie is."
+				"\0%(zpose)%(zgreat)\i[100]There isn't anything comparable to it on Earth.\n\n[half]\i[2001](You wonder if it's true.)"
+				"\0%(zpose)%(zgreat)\i[100]There isn't anything comparable to it on Earth.\1\w8\i[92]%(gwonderingarms)%(gsatisfiedface)What about... ?\0%(zlookg)%(zangryeyes)\n\n[half]Nothing at all!"
+			}
+		}
+		
+		
+		if suppr == 1
+		{
+			_temp = IARRAY
+			_size = ARRAYSIZE(surfacesfilter)
+			foreach surfacesfilter ; _filter
+			{
+				if "surfacesfilter%(_filter)" != reference0
+				{
+					_temp ,= _filter
+				}
+			}
+			surfacesfilter = _temp
+			if _size <= ARRAYSIZE(_temp)
+			{
+				Select.displaySurfacesFilter
+			}
+			_temp = IARRAY
+			_size = ARRAYSIZE(intervalsfilter)
+			foreach intervalsfilter ; _filter
+			{
+				if "intervalsfilter%(_filter)" != reference0
+				{
+					_temp ,= _filter
+				}
+			}
+			intervalsfilter = _temp
+			if _size < ARRAYSIZE(_temp)
+			{
+				Select.displayIntervalsFilter
+			}
+		}
+		
+		foreach surfaceslist ; _surface
+		{
+			if "surface%(_surface[0])" == reference0
+			{
+				surfacetargeted = _surface
+				IntervalsList
+				
+			}
+			elseif "surfaceinfo%(_surface[0])" == reference0
+			{
+				SurfaceDescription
+			}
+		}
+		
+		
+		foreach intervalslist ; _interval
+		{
+			if "interval%(_interval[0])" == reference0 && _interval[2] == surfacetargeted[0]
+			{
+				intervaltargeted = _interval
+				IntervalDescription
+			}
+		}
+
+	}
+}
+
+HandleAnimations
+{
+	_talk = "%(_argv)"
+	_temparray = separateSKDialogues(_talk)
+	_sakura = _temparray[0]
+	_kero = _temparray[1]
+	//_talk = "\_?%(_sakura)"
+	_talk = REPLACE(_talk,"\i[105]\i[302]\i[304]","\i[304]")
+	
+	UpdateCurrentAnimations(_sakura,_kero)
+	
+	_talk = HandleSakuraCompatibleAnimations(_talk,_sakura)
+	_talk = HandleKeroCompatibleAnimations(_talk,_kero)
+	_talk = HandleSakuraAnimations(_talk,_sakura)
+	_talk = HandleKeroAnimations(_talk,_kero)
+	
+	_talk
+}
+
+
+UpdateCurrentAnimations
+{
+	_sakura = _argv[0]
+	_kero = _argv[1]
+	
+	if "\i[303]" _in_ _sakura && "\i[301]" !_in_ _sakura
+	{
+		currentanimations[0] = REPLACE(currentanimations[0],"\i[303]\w9\w9\w9\w9\w2","")
+	}
+	
+	if "\i[310]" _in_ _kero && "\i[301]" !_in_ _kero
+	{
+		currentanimations[1] = REPLACE(currentanimations[1],"\i[310]\w1","")
+	}
+	
+	if "\i[307]" _in_ _kero && "\i[306]" !_in_ _kero
+	{
+		currentanimations[1] = REPLACE(currentanimations[1],"\i[304]\i[307]\w9\w9\w9\i[305]\w9\w9","")
+	}
+	
+	if "\i[309]" _in_ _kero && "\i[308]" !_in_ _kero
+	{
+		currentanimations[1] = REPLACE(currentanimations[1],"\i[304]\i[309]\w9\w9\w9\i[305]\w9\w9","")
+	}
+	
+}
+
+HandleSakuraCompatibleAnimations
+{
+	_talk = "%(_argv[0])"
+	_sakura = "%(_argv[1])"
+	
+	if isSakuraAnimationCompatible(_sakura) && "%(currentanimations[0])" != "\0"
+	{
+		sakuracompatible = ("\i[140]","\i[190]","\i[141]","\i[191]","\i[142]","\i[192]","\i[143]","\i[193]","\i[149]","\i[199]","\i[150]","\i[200]","\i[151]","\i[201]","\i[152]","\i[202]")
+	
+		if "\i[303]" _in_ currentanimations[0]
+		{
+			sakuracompatible ,= "\i[301]"
+			_talk = removeAnimationsCompatibles(_talk,"\0","\i[105]\i[302]")
+		}
+		elseif "\i[303]" !_in_ currentanimations[0]
+		{
+			sakuracompatible ,= "\i[304]"
+			sakuracompatible ,= "\i[105]\i[302]"
+			_talk = removeAnimationsCompatibles(_talk,"\0","")
+		}
+		else
+		{
+			_talk = removeAnimationsCompatibles(_talk,"\0","")
+		}
+	}
+	else
+	{
+		sakuracompatible = ("\i[304]","\i[105]\i[302]")
+		_talk = removeAnimationsCompatibles(_talk,"\0","")
+		_talk = "%(currentanimations[0])" + _talk
+		currentanimations[0] = "\0"
+	}
+	_talk
+}
+HandleKeroCompatibleAnimations
+{
+	_talk = "%(_argv[0])"
+	_kero = "%(_argv[1])"
+	
+	if isKeroAnimationCompatible(_kero) && "%(currentanimations[1])" != "\1"
+	{
+		kerocompatible = ("\i[190]","\i[191]","\i[192]","\i[193]","\i[199]","\i[200]","\i[201]","\i[202]")
+		if "\i[310]" _in_ currentanimations[1]
+		{
+			_talk = removeAnimationsCompatibles(_talk,"\1",currentanimations[1])
+		}
+		elseif "\i[307]" _in_ currentanimations[1]
+		{
+			kerocompatible ,= "\i[306]"
+			if "\i[308]" !_in_ _talk
+			{
+				kerocompatible ,= "\i[304]"
+				kerocompatible ,= "\i[305]"
+			}
+			_talk = removeAnimationsCompatibles(_talk,"\1","\i[311]")
+		}
+		elseif "\i[309]" _in_ currentanimations[1]
+		{
+			kerocompatible ,= "\i[308]"
+			if "\i[306]" !_in_ _talk
+			{
+				kerocompatible ,= "\i[304]"
+				kerocompatible ,= "\i[305]"
+			}
+			_talk = removeAnimationsCompatibles(_talk,"\1","\i[312]")
+		}
+		else
+		{
+			_talk = removeAnimationsCompatibles(_talk,"\1","")
+		}
+	}
+	else
+	{
+		kerocompatible = ("\i[311]","\i[312]")
+		_talk = removeAnimationsCompatibles(_talk,"\0","")
+		_talk = "%(currentanimations[1])\0" + _talk
+		currentanimations[1] = "\1"
+	}
+	_talk
+}
+
+HandleSakuraAnimations
+{
+	_talk = "%(_argv[0])"
+	_sakura = "%(_argv[1])"
+	
+	if "\i[301]" _in_ _sakura && "\i[303]" !_in_ _sakura && "\i[303]" !_in_ currentanimations[0]
+	{
+		if "%(currentanimations[0])" != "\0"
+		{
+			_talk = "%(currentanimations[0])" + _talk
+			currentanimations[0] = "\0"
+		}
+		currentanimations[0] += "\i[303]\w9\w9\w9\w9\w2"
+	}
+	_talk
+}
+HandleKeroAnimations
+{
+	_talk = "%(_argv[0])"
+	_kero = "%(_argv[1])"
+	
+	if "\i[301]" _in_ _kero && "\i[310]" !_in_ _kero && "\i[310]" !_in_ currentanimations[1]
+	{
+		if "%(currentanimations[1])" != "\1"
+		{
+			_talk = "%(currentanimations[1])\0" + _talk
+			currentanimations[1] = "\1"
+		}
+		currentanimations[1] += "\i[310]\w1"
+	}
+	if "\i[306]" _in_ _kero && "\i[307]" !_in_ _kero && "\i[307]" !_in_ currentanimations[1]
+	{
+		if "%(currentanimations[1])" != "\1"
+		{
+			if "\i[309]" _in_ "%(currentanimations[1])"
+			{
+				_talk = REPLACE(_talk,"\i[312]","")
+			}
+			_talk = "%(currentanimations[1])\0" + _talk
+			currentanimations[1] = "\1"
+		}
+		currentanimations[1] += "\i[304]\i[307]\w9\w9\w9\i[305]\w9\w9"
+	}
+	
+	if "\i[308]" _in_ _kero && "\i[309]" !_in_ _kero && "\i[309]" !_in_ currentanimations[1]
+	{
+		if "%(currentanimations[1])" != "\1"
+		{
+			if "\i[307]" _in_ "%(currentanimations[1])"
+			{
+				_talk = REPLACE(_talk,"\i[311]","")
+			}
+			_talk = "%(currentanimations[1])\0" + _talk
+			currentanimations[1] = "\1"
+		}
+		currentanimations[1] += "\i[304]\i[309]\w9\w9\w9\i[305]\w9\w9"
+	}
+	_talk
+}
+//disparait quand Zim demande au sujet de l'ordi, et le \i[105]\i[302] n'est pas remplacé
+
+isSakuraAnimationCompatible
+{
+	_talk = "%(_argv)"
+	_incompatible = ("\i[1]","\i[144]","\i[194]","\i[145]","\i[195]","\i[146]","\i[196","\i[147]","\i[197]","\i[148]","\i[198]","\i[153]","\i[203]","\i[154]","\i[204]","\i[155]","\i[205]","\i[0]","\s[48]","\s[49]","\s[68]","\s[69]")
+	foreach _incompatible ; _interval
+	{
+		if "%(_interval)" _in_ _talk
+		{
+			0
+			return
+		}
+	}
+	1
+}
+
+isKeroAnimationCompatible
+{
+	_talk = "%(_argv)"
+	_incompatible = (1,194,195,196,197,198,203,204)
+	foreach _incompatible ; _interval
+	{
+		if "\i[%(_interval)]" _in_ _talk
+		{
+			0
+			return
+		}
+	}
+	1
+}
+
+removeAnimationsCompatibles
+{
+	_talk = _argv[0]
+	_targetchar = _argv[1]
+	_newanimation = _argv[2]
+	_t = RE_GREP(_talk,"(\\0)|(\\1)")
+	_pos = RE_GETPOS()
+	_char = RE_GETSTR()
+	_index = 0
+	_whole = IARRAY
+	_sakura = IARRAY
+	_kero = IARRAY
+	_c = "\0"
+	
+	for _i = 0; _i < ARRAYSIZE(_char) ; _i++
+	{
+		_s = SUBSTR(_talk,_index,_pos[_i]-_index)
+		if _c == "\0" && _char[_i] == "\1" && _s != ""
+		{
+			_sakura ,= ARRAYSIZE(_whole)
+			_whole ,= ("\0"+_s)
+			_c = "\1"
+		}
+		elseif _c == "\1" && _char[_i] == "\0" && _s != ""
+		{
+			_kero ,= ARRAYSIZE(_whole)
+			_whole ,= ("\1"+_s)
+			_c = "\0"
+		}
+		elseif RE_REPLACE(_s,"(\\1)|(\\0)","") != ""
+		{
+			if _c == "\0" 
+			{
+				if _i > 0
+				{
+					_pos[_i] = _index - 2
+				}
+				else
+				{
+					_sakura ,= ARRAYSIZE(_whole)
+					_whole ,= ("\0"+_s)
+				}
+			}
+			elseif _c == "\1" 
+			{
+				_kero ,= ARRAYSIZE(_whole)
+				_whole ,= ("\1"+_s)
+			}
+			_c = _char[_i]
+		}
+		else {_c = _char[_i]}
+		_index = _pos[_i] + 2
+	}
+	
+	if ARRAYSIZE(_char) > 0
+	{
+		_s = SUBSTR(_talk,_index,STRLEN(_talk)-_index)
+		if _char[ARRAYSIZE(_char)-1] == "\0"
+		{
+			_sakura ,=  ARRAYSIZE(_whole)
+			_whole ,= ("\0"+_s)
+		}
+		elseif _char[ARRAYSIZE(_char)-1] == "\1"
+		{
+			_kero ,= ARRAYSIZE(_whole)
+			_whole ,= ("\1"+_s)
+		}
+	}
+	else
+	{
+		if ARRAYSIZE(_whole) == 0
+		{
+			_whole ,= _talk
+		}
+		else
+		{
+			_whole[0] = _talk
+		}
+		_sakura = 0
+	}
+	
+	if _targetchar == "\0"
+	{
+		for _i = ARRAYSIZE(_sakura)-1; _i >= 0; _i--
+		{	
+			_temp = removeSakuraCompatibles(_whole[_sakura[_i]],_newanimation)
+			if _temp != _whole[_sakura[_i]]
+			{
+				_newanimation = ""
+			}
+			_whole[_sakura[_i]] = _temp
+		}
+	}
+	else
+	{
+		for _i = ARRAYSIZE(_kero)-1; _i >= 0; _i--
+		{
+			_temp = removeKeroCompatibles(_whole[_kero[_i]],_newanimation)
+			if _temp != _whole[_kero[_i]]
+			{
+				_newanimation = ""
+			}
+			_whole[_kero[_i]] = _temp
+		}
+	}
+	_result = ""
+	foreach _whole; _part
+	{
+		_result += _part
+	}
+	_result
+}
+
+removeSakuraCompatibles
+{
+	_talk = "%(_argv[0])"
+	_newanimation = _argv[1]
+	
+	foreach sakuracompatible ; _interval
+	{
+		_temp = REPLACE(_talk,"%(_interval)","%(_newanimation)")
+		if _temp != _talk
+		{
+			_newanimation = ""
+		}
+		_talk = _temp
+	}
+	_talk = removeSakuraAnimationsConflicts(_talk)
+	"%(_talk)"
+}
+
+removeSakuraAnimationsConflicts
+{
+	_t = RE_GREP(_argv,"((\\i\[[0-9]+\])|(\\0))+")
+	_pos = RE_GETPOS()
+	_char = RE_GETSTR()
+	_size = RE_GETLEN()
+	_talk = _argv
+	for _i = ARRAYSIZE(_char)-1; _i >= 0 ; _i--
+	{
+	
+		_t = RE_GREP(_char[_i],"\\i\[105\]\\i\[302\]")
+		_posanim1 = RE_GETPOS()
+		_t = RE_GREP(_char[_i],"\\i\[304\]")
+		_posanim2 = RE_GETPOS()
+		
+		if ARRAYSIZE(_posanim1) > 0 && ARRAYSIZE(_posanim2) > 0
+		{
+			if _posanim1[ARRAYSIZE(_posanim1)-1] < _posanim2[ARRAYSIZE(_posanim2)-1]
+			{
+				_char[_i] = REPLACE(_char[_i],"\i[105]\i[302]","")
+			}
+			else
+			{
+				_char[_i] = REPLACE(_char[_i],"\i[304]","")
+			}
+		}
+
+		_t = RE_GREP(_char[_i],"(\\i\[10[0-7]\])")
+		_poseyes = RE_GETPOS()
+		_chareyes = RE_GETSTR()
+		_sizeeyes = RE_GETLEN()
+		if ARRAYSIZE(_chareyes) > 1
+		{
+			_char[_i] = RE_REPLACE(_char[_i],"(\\i\[10[0-7]\])","",ARRAYSIZE(_chareyes)-1)
+		}
+		_talk = SUBSTR(_talk,0,_pos[_i]) + _char[_i] + SUBSTR(_talk,_pos[_i]+_size[_i],STRLEN(_talk)-_pos[_i]-_size[_i])
+	}
+	
+	_talk
+}
+
+removeKeroCompatibles
+{
+	_talk = "%(_argv[0])"
+	_newanimation = _argv[1]
+
+	foreach kerocompatible ; _interval
+	{
+		_temp = REPLACE(_talk,"%(_interval)","%(_newanimation)")
+		if _temp != _talk
+		{
+			_newanimation = ""
+		}
+		_talk = _temp
+	}
+	"%(_talk)"
+}
+
+removeSakuraEyesConflicts
+{
+	_talk = _argv[0]
+	_current = _argv[1]
+	_conflicts = (100,101,102,103,104,105)
+	foreach _conflicts ; _interval
+	{
+		_talk = REPLACE(_talk,"\i[%(_interval)]%(_current)","%(_current)")
+		
+	}
+	_talk
+}
+
+
+simultanateTalk
+{
+	_temparray = IARRAY
+	_temparray = separateSKDialogues(_argv)
+	_sakura = _temparray[0]
+	_kero = _temparray[1]
+	
+	_stalk = ztalkanim[0]
+	_ktalk = gtalkanim[0]
+	_t = RE_GREP(_sakura,"((\\(_)?([0-9ac-vx-zA-Z?!])(\[[0-9a-zA-Z,\\\.\(\)\[\]'\-;:_!?'*]+\])*)|(\\w[0-9])|(\\b[0-9]))+")
+	_spos = RE_GETPOS()
+	_schar = RE_GETSTR()
+	_slen = RE_GETLEN() 
+	_t = RE_GREP(_kero,"((\\(_)?([0-9ac-vx-zA-Z?!])(\[[0-9a-zA-Z,\\\.\(\)\[\]'\-;:_!?'*]+\])*)|(\\w[0-9])|(\\b[0-9]))+")
+	_kpos = RE_GETPOS()
+	_kchar = RE_GETSTR()
+	_klen = RE_GETLEN() 
+	_sindex = 0
+	_kindex = 0
+	_sgid = 0
+	_kgid = 0
+	
+	_stime = 0
+	_ktime = 0
+	_ttimer = 0
+	_finalstring = ""
+	
+	while _sindex < STRLEN(_sakura) && _kindex < STRLEN(_kero)
+	{
+		_finalstring += "\w1\_q"
+		if _sindex == _spos[_sgid]
+		{
+			_sindex += _slen[_sgid]
+			if "\w" _in_ _schar[_sgid]
+			{
+				_tempg = RE_GREP(_schar[_sgid],"\\w")
+				_tempp = RE_GETPOS()
+				foreach _tempp ; _p {_stime += TOINT(SUBSTR(_schar[_sgid],_p+2,1))}
+			}
+			else
+			{
+				foreach ztalkanim ; _a { if _a _in_ _schar[_sgid]{_stalk = _a} }
+				_finalstring += "\0" + _schar[_sgid]
+			}
+			_sgid++
+		}
+		if _kindex == _kpos[_kgid]
+		{
+			_kindex += _klen[_kgid]
+			if "\w" _in_ _kchar[_kgid]
+			{
+				_tempg = RE_GREP(_kchar[_kgid],"\\w")
+				_tempp = RE_GETPOS()
+				foreach _tempp ; _p {_ktime += TOINT(SUBSTR(_kchar[_kgid],_p+2,1))}				
+			}
+			else
+			{
+				foreach gtalkanim ; _a { if _a _in_ _kchar[_kgid] {_ktalk = _a} }
+				_finalstring += "\1" + _kchar[_kgid]
+			}
+			_kgid++
+		}
+		
+		if _stime == 0
+		{
+			_finalstring += "\0" + SUBSTR(_sakura,_sindex,1)
+			_sindex ++
+			if _ttimer >= 5 { _finalstring += _stalk }
+		}
+		else { _stime -- }
+		
+		if _ktime == 0
+		{
+			_finalstring += "\1" + SUBSTR(_kero,_kindex,1)
+			_kindex ++
+			if _ttimer >= 5 { _finalstring += _ktalk }
+		}
+		else { _ktime-- }
+		if _ttimer >= 5 { _ttimer = 0 }
+		_ttimer++
+		_finalstring += "\_q"		
+	}
+	_finalstring += "\0" + SUBSTR(_sakura,_sindex,STRLEN(_sakura)-sindex)
+	_finalstring += "\1" + SUBSTR(_kero,_kindex,STRLEN(_kero)-kindex)
+	--
+	"%(_finalstring)"
+}
+
+separateSKDialogues
+{
+	_t = RE_GREP(_argv,"(\\0)|(\\1)")
+	_pos = RE_GETPOS()
+	_char = RE_GETSTR()
+	_index = 0
+	_sakura = ""
+	_kero = ""
+	_c = "\0"
+	
+	for _i = 0; _i < ARRAYSIZE(_char) ; _i++
+	{
+		_s = SUBSTR(_argv,_index,_pos[_i]-_index)
+		if _c == "\0" && _char[_i] == "\1" && RE_REPLACE(_s,"((\\(_)?([0-9ac-vx-zA-Z?!])(\[[0-9a-zA-Z,\\\.\(\)\[\]'\-;:_!?'*]+\])*)|(\\w[0-9])|(\\b[0-9]))+","") != ""
+		{
+			_sakura += _s
+			_c = "\1"
+		}
+		elseif _c == "\1" && _char[_i] == "\0" && RE_REPLACE(_s,"((\\(_)?([0-9ac-vx-zA-Z?!])(\[[0-9a-zA-Z,\\\.\(\)\[\]'\-;:_!?'*]+\])*)|(\\w[0-9])|(\\b[0-9]))+","") != ""
+		{
+			_kero += _s
+			_c = "\0"
+		}
+		elseif RE_REPLACE(_s,"(\\1)|(\\0)","") != ""
+		{
+			if _c == "\0" {_sakura += _s}
+			elseif _c == "\1" {_kero += _s}
+			_c = _char[_i]
+		}
+		else {_c = _char[_i]}
+		_index = _pos[_i] + 2
+	}
+	
+	if ARRAYSIZE(_char) > 1
+	{
+		_s = SUBSTR(_argv,_index,STRLEN(_argv)-_index)
+		if _c == "\0" &&  RE_REPLACE(_s,"((\\(_)?([0-9ac-vx-zA-Z?!])(\[[0-9a-zA-Z,\\\.\(\)\[\]'\-;:_!?'*]+\])*)|(\\w[0-9])|(\\b[0-9]))+","") != ""
+		{
+			_sakura +=  _s
+			_c = "\1"
+		}
+		elseif _c == "\1" && RE_REPLACE(_s,"((\\(_)?([0-9ac-vx-zA-Z?!])(\[[0-9a-zA-Z,\\\.\(\)\[\]'\-;:_!?'*]+\])*)|(\\w[0-9])|(\\b[0-9]))+","") != ""
+		{
+			_kero += _s
+			_c = "\0"
+		}
+		elseif RE_REPLACE(_s,"(\\1)|(\\0)","") != ""
+		{
+			if _c == "\0" {_sakura += _s}
+			elseif _c == "\1" {_kero += _s}
+		}		
+		_whole += SUBSTR(_argv,_index,STRLEN(_argv)-_index)
+	}
+	elseif _char[0] == "\1"
+	{
+		_kero = _argv
+	}
+	else
+	{
+		_sakura = _argv
+	}
+	("%(_sakura)","%(_kero)")
+}

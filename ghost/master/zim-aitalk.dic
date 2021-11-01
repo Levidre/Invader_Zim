@@ -1,0 +1,1103 @@
+﻿//---------------------------AI Talk--------------------------
+//Alright, this is it! The bread and butter of your ghost. This is where all their random conversations are stored. Of all the .dic files, this is the one you will probably be adding stuff to and updating the most as new dialogue comes to your mind. It is relatively simple in that there aren't many functions or real coding involved with this file, but there are a few cool tricks you can do within randomtalk that can make dialogue with interesting effects, so I'll point them out as we go along.
+//I'm going to leave a lot of examples of different types of dialogue in here that you can study if the possibilities they present intrigue you. Study them carefully!
+
+//Make sure to read the walkthrough (http://www.ashido.com/ukagaka/walkthrough.html) for more details about how to properly format ghost dialogue!
+//I will reiterate that you should be editing these in Notepad++, and in particular, you should set the Language to C (or Java I guess) to properly highlight all the text. It will make things A LOT EASIER for you, trust me! It will also help you keep track of your brackets in case you forget some. If you click on a line with a bracket in Notepad++, it should highlight where the other bracket ends, or turn purple if there's no finishing bracket (which you should definitely fix!)
+//It will also highlight my commented lines in green, so you'll know where they are. Any line beginning with // is a commented line that the code will not read. It's just for your reference!
+
+//--AiTalk
+//Leave this alone.
+//Advanced users, this is mostly setting up whether or not dialogue is in a chain before it displays. Again, you can leave it alone unless you want to screw around with chains for some strange reason.
+
+
+
+//Oh my bloop
+//"That's bad" "Awboooo"
+AiTalk
+ {
+
+	if RAND(100) < communicateratio
+ 	{
+ 		StartCommunicate
+	}
+ 	else
+	{
+ 		if mikireflag == 0
+		{
+			_result = AllTalk
+			while ASEARCH(RE_REPLACE(_result,"((\\(_)?([0-9ac-vx-zA-Z?!])(\[[0-9a-zA-Z,\\\.\(\)\[\]'\-;:_!?'*]+\])*)|(\\w[0-9])|(\\b[0-9]))+",""),lastdialogues) != -1 && worried != 1
+			{
+				_result = AllTalk
+			}
+			if ARRAYSIZE(lastdialogues) >= 30
+			{
+				lastdialogues[0] = IARRAY
+			}
+			lastdialogues ,= RE_REPLACE(_result,"((\\(_)?([0-9ac-vx-zA-Z?!])(\[[0-9a-zA-Z,\\\.\(\)\[\]'\-;:_!?'*]+\])*)|(\\w[0-9])|(\\b[0-9]))+","")
+			
+			if girduty == 1
+			{
+				girduty = 0
+				"%(gpose)%(geyes)%(gsmile)%(arms)\w5"
+			}
+			--
+			_result
+
+		}
+ 		else
+		{ 
+		MikireTalk
+ 		}
+	}
+ }
+ 
+ 
+AllTalk
+{
+	if CHAIN.IDName == "" {
+				
+ 		lastTalk = RandomTalk
+	}
+	else {
+		lastTalk = ChainTalk
+	}
+	lastTalk
+}
+
+
+//--RandomTalk 
+
+OnStartCom
+{
+	res_reference0 = ghostexlist[index]
+	conversation = "started"
+	if ghostexlist[index] == "MVSans"
+	{
+
+	}
+	elseif "flowey" _in_ TOLOWER(ghostexlist[index])
+	{
+	}
+	elseif ghostexlist[index] == "Gaster"
+	{
+	}
+	elseif ghostexlist[index] ==  "Ralsei"
+	{
+
+	}
+	elseif ghostexlist[index] == "Jockey"
+	{
+	}
+	elseif ghostexlist[index] == "Hunter and Smoker Beta"
+	{
+	}
+	elseif ghostexlist[index] == "Wheatley"
+	{
+
+	}
+	elseif ghostexlist[index] == "CheeryBot"
+	{
+	}
+	elseif ghostexlist[index] == "Mettaton"
+	{
+	}
+	elseif ghostexlist[index] == "Dusk"
+	{
+	}
+	elseif ghostexlist[index] == "MiniDev"
+	{
+	}
+	else
+	{
+	}
+
+}
+
+RandomTalk
+{
+	if worried == 1
+	{
+		WorriedTalk
+	}
+	elseif worried == -1
+	{
+		"%(zpose)%(zrelieved)%(arms)\i[2001](He looks relieved.)"
+		"%(zpose)%(zrelieved)%(arms)\i[2001](He is back.)"
+		"%(zpose)%(zrelieved)%(arms)Phew..."
+		worried = 0
+	}
+	else
+	{
+		if hasspiderlegs && RAND(3) == 0
+		{
+			"%(zspidertransition)\i[2001]%(arms)%(zeyes)%(zsmile)\i[100](He put his spider legs back in its %(pak).)\e"
+			"%(zspidertransition)\i[2001]%(arms)%(zeyes)%(zsmile)\i[100](The spider legs retract back into its %(pak).)\e"
+		}
+		else
+		{
+			
+			NeutralTalk
+			
+			if discovered == 1
+			{
+				if cumuhour >= 50 && isally == 0
+				{
+					if zimpunched <= 2
+					{
+						"\0%(zfrontpose)%(zwondering)You're not really behaving like an enemy.\w7%(zexplainarms)\i[100] Would you like to be an ally of the great Zim?\n\n[half]\![*]\q[It would be an honor!,yesally]\n\![*]\q[No\, thanks,noally]\e"
+					}
+					else
+					{
+						"\0%(zfrontpose)\i[100]%(zangryface)%(zexplainarms)You made your point clear enough,\w5 you're condidering me as an enemy!\n\n[half]\![*]\q[No at all!,noally]\n\![*]\q[You're my greatest enemy!,yesenemy]\e"
+					}
+				}
+				
+				DiscoveredTalk
+				
+				if isally == 1
+				{
+					AllyTalk
+				}
+				elseif isally == -1
+				{
+					NotAllyTalk
+				}
+				elseif isally != 0
+				{
+					ContradictoryTalk
+				}
+			}
+			else
+			{
+				CoveredTalk
+			}
+		}
+	}
+}
+
+NeutralTalk
+{
+	{
+		if ghostexlist != ""
+		{
+			ReactsOtherGhosts
+		}
+		if useraffection > 150
+		{
+			"\0\i[92]\i[136]\i[137]\i[146]\i[196]\i[62]\i[43]\i[304]I understand why you enjoy that much my company%(zbackpose)%(zexplainarms)\i[54]\i[62]\i[136]\i[137]\i[100] seeing how amazing I am."
+			"\0%(zrandompose)%(zwondering)\i[304]You're probably gonna be more useful than my computer's guesses."
+		}
+		else
+		{
+			"\0\i[92]\i[304]So,\w5 huh,\w5 what are you doing here?"
+			"\0\i[92]\i[304]%(zboredeyes)%(zsmile)Why did you make me come here anyway?"
+		}
+		
+		if cumuhour > 300
+		{
+			"%(zwondering)\i[2001](He is totally used to your desktop.)"
+			"%(zwondering)\i[2001](He seems pretty at ease on a computer.)"
+			"%(zwondering)\i[2001](He seems at ease now.)"
+		}
+		elseif cumuhour > 48
+		{
+			"%(zwondering)\i[2001](He seems more used to your desktop.)"
+			"%(zwondering)\i[2001](He gives a folder a look.)"
+			"%(zwondering)\i[2001](He gives a file a look.)"
+			"%(zwondering)\i[2001](He is staring at a file.)"
+		}
+		elseif cummuhour > 10
+		{
+			"%(zwondering)\i[2001](He gives a folder an unsure look.)"
+			"%(zwondering)\i[2001](He gives a file an unsure look.)"
+			"%(zwondering)\i[2001](He is looking around.)"
+			"%(zwondering)\i[2001](He is still intrigued by your desktop.)"
+		}
+		else
+		{
+			"%(zwondering)\i[2001](He looks unsure about where he is.)"
+			"%(zwondering)\i[2001](He looks intrigued by your desktop.)"
+			"%(zwondering)\i[2001](He is curiously looking around.)"
+		}
+		
+		if cumuhour > 6 && toldcomputer == 0
+		{
+			"\0%(zpose)%(zwondering)\i[304]It's a so weird place.\n\n[half]\i[2001](Tell him about your computer?)\n\n[half]\![*]\q[Yes,tellcomputer1]     \![*]\q[No,close]"
+		}
+		elseif cumuhour > 16 && toldcomputer == 1
+		{
+			"\0%(zwondering)\i[304]Can I take a %(fileextent)?\w7\i[100]%(zexplainarms) It's for...\w5 \i[125]\i[126]to satisfy my curiosity?\n\n[half]\i[2001](You explain him clearly that he isn't allowed to take anything you have on your computer or to touch anything.)\n\n[half]\i[92]%(zwonderingeyes)Not even a %(fileextent)?\n\n[half]\i[2001](You reiterate your no.)\n\n[half]%(zboredface)\i[92]Fine,\w5 I stop insisting.\![ember,OnTellcomputer2]"
+		}
+		elseif cumuhour > 24 && toldcomputer == 2
+		{
+			"\0%(zrandompose)%(zwondering)\i[304]Since I'm on your computer,\w5 what am I here?\n\n[half]\i[2001](Tell him what he is?)\n\n[half]\![*]\q[Yes,tellcomputer3]     \![*]\q[Let him ignorant,tellcomputer3no]"
+		}
+		
+		if toldcomputer >= 2
+		{
+			"\0%(zwondering)%(irken)\i[92]Maybe I could use computers to assure my domination over humanity?%(irkens)"
+			"\0%(zwondering)%(irken)\i[92]Maybe I could use computers to conquer the humanity?%(irkens)"
+			"\0%(zsatisfiedface)%(arms)\i[92]\i[304]If you have some spare %(fileextent),\w5\i[105]\i[302] you can give it to me."
+			"\0%(zsatisfiedface)%(arms)\i[92]\i[304]If you have some spare %(dangerousfileextent),\w5\i[105]\i[302] you can give them to me.\n\n[half]\i[2001](You will probably never.)"
+			"\0%(zwondering)%(irken)\i[92]\i[304]It looks so different from our computer from the inside.\i[105]\i[302]%(irkens)"
+			"\0%(zfrontpose)%(zexplainarms)%(zwonderingface)\i[100]Is your computer having an AI?"
+			"\0%(zfrontpose)%(zexplainarms)%(zwonderingface)\i[100]Can your computer respond to vocal commands?"
+		}
+		elseif toldcomputer >= 1
+		{
+			"\0%(zwondering)\i[92]So those things are files."
+			"\0%(zwondering)\i[92]And what would happen if I touch some %(fileextent)?"
+			"\0%(zwondering)\i[92]And what would happen if I touch some %(dangerousfileextent)?\n\n[half]\i[2001](You say nothing good to him.)"
+			"\0%(zwondering)\i[92]Interesting..."
+			
+			"\0%(zplotting)\i[92]Are humans dependant of those... computers?"
+			"\0%(zwondering)%(irken)\i[92]Mmh,\w5 could I modify some files?\1%(arms)%(gsatisfiedface)%(irken)\i[92]I dunno.%(irkens)"
+			"\0%(zwondering)%(irken)\i[92]It looks so different from our computer from the inside.%(irkens)"
+			
+		}
+		elseif toldcomputer == 0
+		{
+			"\0%(zpose)%(zwondering)What's this thing?\n\n[half]\i[2001](He is looking at a %(fileextent).)"
+			"\0%(zpose)%(zwondering)What's this thing?\n\n[half]\i[2001](He is looking at a %(dangerousfileextent).)"
+			"\0%(zpose)%(zwondering)What are those things used for?\n\n[half](He is looking at a %(fileextent).)"
+			"\0%(zpose)%(zwondering)What are those things used for?\n\n[half](He is looking at a %(dangerousfileextent).)"
+			"\0%(zpose)%(zboredface)\i[101]%(zwonderingarms)What a weird place."
+			"\0%(zpose)%(zboredface)\i[100]%(zwonderingarms)What's this place anyway?"
+		}
+		
+		if toldcomputer >= 3
+		{
+			"\0%(zpose)%(zplotting)\i[100]%(irken)\i[92]\i[304]Maybe I could create a %(fileextent) here?\i[105]\i[302]%(irkens)"
+			"\0%(zpose)%(zwondering)\i[304]Are there strong ukagakas?"
+			"\0%(zrandompose)%(zwondering)\i[304]What can an ukagaka do?"
+			"\0%(zpose)%(zwondering)\i[304]Do I have access to other computers?\n\n[half]\i[2001](You tell him you don't know, he doesn't have from yours at least.)\i[105]\i[302]"
+			if ARRAYSIZE(ghostexlist) > 0
+			{
+				"%(zrandompose)%(zwonderingface)%(zexplainarms)\i[100]\i[304]Are those ukagakas too?\n\n[half]\i[2002](He made a little gesture to a ghost nearby.)"
+				"%(zrandompose)%(zwondering)\i[304]How many ukagakas exist?"
+				"%(zrandompose)%(zwondering)\i[304]They're weird.\n\n[half]\i[2002](He is talking about the ghost nearby.)"
+			}
+		}
+		
+		if toldcomputer > 0
+		{
+			"\0%(irken)%(zpose)%(zangryeyes)%(zrelaxedarms)%(zlookg)%(zsmile)G\i[304]IR! \w7Go search if there is something useful in those files!\w8\1%(irken)%(gdutypose)%(gobey)\i[96]Yes master!!!\w9\w9\s[-1]%(irkens)\![embed,OnGirDuty]\0\i[105]\i[302]"
+			"\0%(irken)%(zpose)%(zangryeyes)%(zrelaxedarms)%(zlookg)%(zsmile)G\i[304]IR! \w7Go search if there are useful stuff around!\w8\1%(irken)%(gdutypose)%(gobey)\i[96]Yes master!!!\w9\w9\s[-1]%(irkens)\![embed,OnGirDuty]\0\i[105]\i[302]"
+			if girfoundfood == 1
+			{
+				"\0%(irken)%(zpose)%(zangryeyes)%(zrelaxedarms)%(zlookg)%(zsmile)G\i[304]IR! \w7Go search if there is some food in those files!"
+				"\0%(irken)%(zpose)%(zangryeyes)%(zrelaxedarms)%(zlookg)%(zsmile)G\i[304]IR! \w7Go check what other food could be around!"
+				"\0%(irken)%(zpose)%(zangryeyes)%(zrelaxedarms)%(zlookg)%(zsmile)G\i[304]IR! \w7Go check what other useful things could be around!"
+				--
+				"\w8\1%(irken)%(gdutypose)%(gobey)\i[96]Yes master!!!\w9\w9\s[-1]%(irkens)\![embed,OnGirDuty]\0\i[105]\i[302]"
+			}
+		}
+		
+		//timeslot dialogues
+		if timeslot == "morning"
+		{
+			"\0%(zboredface)\i[2001](He doesn't seem very happy.)"
+		}
+		elseif timeslot == "earlymorning"
+		{
+			"\0\i[2001]%(zboredface)(He doesn't seem sleepy at all.)"
+		}
+		elseif timeslot == "midnight" || timeslot == "latenight"
+		{
+			"\0\i[2001](He doesn't seem sleepy at all.)"
+			"\0\i[2001](Does he even sleep?)"
+		}
+		
+		if passhour > 12
+		{
+			"\0%(zboredface)\i[2001](He doesn't seem very happy.)"
+			"\0%(zwonderingface)\i[304]\i[92]Why don't you let me go?"
+			"\0%(zboredface)%(arms)\i[92]\i[304]You really did keep me the whole day."
+			"\0%(zrandompose)%(zworried)\i[304]%(irken)I hope there hasn't been a security breach while I'm here.%(irkens)"
+			if disguised
+			{
+				"\0%(zpose)%(zfacepalm)\i[100]\i[99]Urgh!\w7 My eyes..."
+			}
+			
+			if discovered == 1 && disguised == 1
+			{
+				"%(zpose)\i[100]%(zboredface)%(zrelaxedarms)Enough of this disguise!\![embed,OnDisguise]\0\nThere,\w5 %(zsatisfiedsmile)better."
+			}
+			
+			if passhour < 18
+			{
+				"\0%(zboredface)\i[92]\i[304]You made me lose half a day,\w5%(zwonderingface) don't you want to let me go?"
+			}
+		}
+		elseif passhour > 5
+		{
+			"\0%(zboredface)\i[2001](Something seems to bother him.)"
+			"\0%(zwonderingface)\i[92]\i[304]Are you going to keep me here for the whole day?"
+			"\0%(zboredface)\i[92]\i[304]I don't want to stay here the whole day."
+			"\0%(zrandompose)%(zworried)\i[304]%(irken)I hope there hasn't been a security breach while I'm here.%(irkens)"
+			if discovered == 1 && disguised == 1
+			{
+				"%(zpose)\i[100]%(zboredface)%(zrelaxedarms)Enough of this disguise!\![embed,OnDisguise]\0\nThere,\w5 %(zsatisfiedsmile)better."
+			}
+		}
+		elseif passhour > 2
+		{
+			"\0%(zpose)\i[100]%(arms)%(zboredface)\i[304]Don't you have stuff to do?\w7%(zrelaxedarms)\i[126] Can't you just let us go?"
+			"\0%(zwonderingface)\i[100]\i[92]\i[304]You're going to keep me here for how many time?"
+		}
+		
+		if wasspiderbusy == 1
+		{
+			"%(zpose)\i[100]%(zboredface)%(zrelaxedarms)\i[304]Are you gonna keep me here for hours?\i[105]\i[302]"
+			"%(zpose)\i[101]%(zboredface)%(zrelaxedarms)\i[304]I want to go home.\w7 I've stuff to finish.\i[105]\i[302]"
+			"%(zpose)\i[100]%(zboredface)%(zrelaxedarms)\i[304]Never thought some people could be busy?\i[105]\i[302]"
+		}
+		
+		if isally == 1
+		{
+			"\0%(irken)%(zlookg)\i[112]\i[114]\i[92]\i[125]\i[122]\i[304]Did you let the cake on the fire?\w8\1%(irken)\i[92]\i[117]\i[118]\i[62]I did.%(irkens)\0\f[italic,true]\w8\i[96]\n\n[half]\i[53]\i[153]\i[203]%(zsmile)%(irkens)\i[54]Whhaaaaaaattt???\f[italic,false]\n\w7\i[53]\i[92]\i[144]\i[194]\i[100]%(username) please I need to go right now. %(zlookg)\w7My base is in danger!!!\![embed,OnZimWorried]\n\n[half]\![*]\q[Let him go,goworried]\n\![*]\q[Keep him here,nogoworried]"
+			"\0%(irken)%(zlookg)\i[112]\i[114]\i[92]\i[125]\i[122]\i[304]Did you let the cake on the fire?\w8\1%(irken)\i[92]\i[117]\i[118]\i[62]\i[92]Nah,\w5 it was ready.\0\i[127]\i[128]\i[66]\n\n[half]Good.%(irkens)\i[2001]\n\n[half](He seems relieved.)"
+		
+		}
+		else
+		{
+			"\0%(irken)%(zlookg)\i[112]\i[114]\i[92]\i[125]\i[122]\i[304]Did you let the cake on the fire?\w8\1%(irken)\i[92]\i[117]\i[118]\i[62]I did.%(irkens)\0\f[italic,true]\w8\i[96]\n\n[half]\i[53]\i[153]\i[203]%(zsmile)%(irkens)\i[54]Whhaaaaaaattt???\f[italic,false]\n\w7\i[53]\i[92]\i[144]\i[194]\i[100]%(username) please I need to go right now.\![embed,OnZimWorried]\n\n[half]\![*]\q[Let him go,goworried]\n\![*]\q[Keep him here,nogoworried]"
+			"\0%(irken)%(zlookg)\i[112]\i[114]\i[92]\i[125]\i[122]\i[304]Did you let the cake on the fire?\w8\1%(irken)\i[92]\i[117]\i[118]\i[62]\i[92]Nah,\w5 it was ready.\0\i[127]\i[128]\i[66]\n\n[half]At least I won't find the house on fire.%(irkens)"
+		
+		}
+	}
+	
+	{
+		"\1%(ghappyface)%(grandomarms)\i[2001](He looks agitated.)"
+		"\1%(gsatisfiedface)%(arms)\i[2001](He is playing with a %(fileextent).)"
+		"%(zrelieved)\1%(ghappyface)%(arms)\i[2001](He is playing with a %(fileextent). Zim seems happy it keeps him occupied.)"
+		"\1%(gsatisfiedface)%(arms)\i[2001](He is watching a %(fileextent).)"
+		
+		"\1\i[2001](He is actively looking around.)"
+		"\1\i[2001](He looks interrested in your files... only for a few seconds.)"
+		
+		"\1%(gsatisfiedface)%(arms)\i[2001](He is playing with a %(dangerousfileextent). You start to be worried.)"
+		"\1%(gsatisfiedface)%(arms)\i[2001](He is playing with a %(dangerousfileextent). You hope he won't break anything.)"
+		"\1%(gsatisfiedface)%(arms)\i[2001](He is playing with a %(dangerousfileextent). Zim doesn't seem to want to stop him.)"
+		"\1%(gsatisfiedface)%(arms)\i[2001](He is watching a %(dangerousfileextent). You start to worry for it.)"
+		"\1%(gsatisfiedface)%(arms)\i[2001](He is watching a %(dangerousfileextent). You feel anxious about it.)"
+		
+		"\0\i[2001]%(zlookg)%(zboredeyes)\i[304](He is watching GIR.)"
+		"\0%(zpose)%(zwonderingface)\i[105]\i[301]\i[2001](He is taking some notes.)"
+		"\0%(zpose)%(zwonderingface)\i[105]\i[301]\i[2001](He is noting something down.)"
+		"\0\i[2001]%(zboredeyes)\i[105]\i[301](He is taking notes about your computer.)"
+		
+		"\0%(irken)%(zsidepose)%(zwonderingeyes)%(zsmile)%(zlookg)%(zrelaxedarms)\i[304]Did you get the ingredients?\1\w8%(gsatisfiedface)%(irken)\i[92]What ingredients?\0\n\n[half]\w8%(zpose)%(zfacepalm)\i[103]Urgh!\w7 %(zpowerfularms)%(zlookg)I gave you a list of ingredients to get!\i[105]\i[302]%(irkens)"
+		
+		"\0%(zpose)%(zboredface)\i[100]%(arms)\i[304]For how long are you gonna keep us here?"
+		"\0%(irken)%(zpose)%(zeyes)%(zsmile)%(zwonderingarms)\i[101]\i[304]Maybe I should report to my tallest?%(irkens)"
+		"\0%(irken)%(zpose)%(zeyes)%(zsmile)%(zwonderingarms)\i[102]The tallest must be informed of this place.%(irkens)"
+		"\0%(zpose)%(zwondering)I could steal her video game?"
+		"\0%(zpose)%(zplotting)\i[100]\i[105]\i[302]Maybe I could put drawing pins on his chair?"
+		//"\0%()%(zsidepose)"
+	}
+	--
+	"\e"
+}
+
+DiscoveredTalk
+{		
+	"\0%(zpose)%(zwondering)\i[304]I hope \_a[Dib]Dib\_a isn't trying anything while I'm not there."
+	"\0%(zpose)%(zangryeyes)%(zsmile)%(zrelaxedarms)%(zlookg)%(smiles)\i[304]You know you will have to explain me how you got those bees somehow.\w8\1%(gsadface)%(arms)I just found them!\0\i[105]\i[302]"
+	"\0%(irken)%(zpose)%(zwondering)\i[304]What was the second step of my evil plan again?\w8\1%(irken)%(ghappyface)\i[152]\i[202]\i[92]I don't know!%(irkens)\0\i[105]\i[302]"
+	"\0%(zpose)%(zwondering)\i[304]Would the \_a[Irkens]irken\_a armada be able to come here?\i[105]\i[302]"
+	"\0%(zfrontpose)%(zwondering)\i[304]Wouldn't a big bunch of ship be able to,\w5%(zexplainarms)\i[100] let's say,\w5%(zsatisfiedsmile) come here on your computer thingy?"
+	"\0%(zpose)%(zwondering)How advanced is your computer?"
+	"\0%(zpose)%(zwondering)How useful your computer could be to me..."
+	"\0%(zpose)%(zwondering)Do your computers even have AI?"
+	"\0%(zpose)%(zwondering)Your computer doesn't seem very talkative."
+	"\0%(zrandompose)%(zwonderingface)%(zexplainarms)Do\i[100] you have space ships?"
+	
+	"\0\i[304]\i[61]\i[52]\i[42]\i[133]\i[134]\i[152]\i[202]\1\f[italic,true]\i[96]\i[117]\i[118]TAAAAAAAACOOOOOOOOOOOOOOOOSSSSSSSS!!!!!!!\f[italic,false]\i[136]\i[137]\i[62]\0\i[92]\i[121]%(zlookg)\i[122]\i[68]\i[144]\i[190]\i[51]GIR please."
+	"\0\i[304]\i[61]\i[52]\i[42]\i[133]\i[134]\i[152]\i[202]\1\f[italic,true]\i[96]TAAAAAAAACOOOOOOOOOOOOOOOOSSSSSSSS!!!!!!!\f[italic,false]\i[136]\i[137]\i[62]\0\i[92]\i[127]\i[128]\i[140]\i[190]Don't pay attention to him."
+	"\1\i[92]%(ghappyface)%(arms)Doom doomdoom doom doom...\0\i[92]%(zlookg)No GIR,\w5 please don't sing.\e:chain=doomsong1"
+	"\1\i[96]%(ghappyface)La lala la lalala lala la....\0%(zsidepose)%(zangry)%(zlookg)No! \w7Stop those screams immediately!\1\n\n[half]But am singing!\0\n\n[half]Then stop it!"
+	"\1\i[92]%(ghappyeyes)\i[68]Pumpum pum pumpumpum...\0%(zsidepose)%(zlookg)%(zrelaxedarms)%(zboredface)Can you stop this noise?\w7 It's annoying!"
+	"\1\i[92]%(ghappyeyes)\i[68]Mmh mhm mmmhmm hmm....\0%(zfrontpose)%(zwondering)Is%(zlookg) that a song?"
+	"\1\i[92]%(ghappyface)%(arms)Do you like peace?\0%(zpose)%(zwonderingface)%(arms)%(zlookg)\i[304]Why are you asking %(himher) that?\e:chain=chickenricesong1"
+	"\1%(gsatisfiedface)%(arms)\i[92]Can I eat \i[192]this?\n\n[half]\i[2001](You jump on the innocent %(fileextent) before GIR takes it.)"
+	"\1%(gsatisfiedface)%(arms)\i[92]Can I eat \i[192]this?\n\n[half]\i[2001](You jump on the %(dangerousfileextent) before GIR takes it. Who knows what would happen if he eats it.)"
+	"\1%(ghappyface)%(arms)\i[92]I saw a squirrel!\w8\0%(zwonderingeyes)%(arms)\i[92]Where?\w8\1\n\n[half]%(gsadface)%(gwonderingarms)I don't know..."
+	"\1%(gsatisfied)\i[92]I saw the sister!\w8\0%(zpose)%(zboredeyes)%(arms)%(zsmile)\i[100]\i[304]Who?\i[304]\w7 \_a[Gaz]Gaz\_a?\w8\1\n\n[half]%(gwondering)She was looking busy.\0\i[105]\i[302]"
+	"\1%(gpose)%(ghappyeyes)\i[63]\i[221]\i[222]Wheeeeeeeee!!!\0%(zpose)\i[143]\i[193]\i[123]\i[124]\i[53]%(zlookg)%(zsmile)%(zrelaxedarms)GIR!\i[304]\w7 Stop that please.\w8\1%(gpose)%(ghappyface)%(arms)\n\n[half]Okee dokee!\0\i[105]\i[302]"
+	"\1%(gsatisfied)\i[92]Can I do waffles here?\0%(zpose)%(zwondering)I don't think you can."
+	"\1%(gsatisfied)\i[92]I wanna do a cake.\0\i[108]"
+	"\1%(gsadface)%(arms)\i[92]It's boring here..."
+	"\1%(ghappyface)\i[96]Look!\n\i[304]\w8\i[306]\w9\i[305]I found a piggy!%(zsatisfiedface)\0\i[108]"
+	"\1%(ghappyface)\i[96]Look!\n\i[304]\w8\i[306]\w9\i[305]I found a piggy!\0%(zsuspiciousface)%(zlookg)\i[304]Where did you find it?"
+	"\1%(ghappyface)\i[96]\i[304]I found \i[308]a cupcake!\i[305]\0%(zsuspiciousface)%(zlookg)\i[304]Where did you find it?\![embed,OnGirFoundFood]"
+	"\1%(ghappyface)\i[96]\i[304]I found \i[308]this in a file!\i[305]\0%(zfrontpose)%(zexplainarms)%(zsuspiciousface)\i[100]\i[304]Why are you keeping food in your files?\![embed,OnGirFoundFood]"
+	
+	"\0%(zlookg)\1%(gsadface)%(arms)\i[92]I'm bored...\w8\0%(zfrontpose)%(zrelaxedarms)%(zwonderingeyes)%(zsatisfiedsmile)\i[100]\i[304]\i[108]Do you have something to keep him busy?"
+
+	"\0%(irken)%(zpose)%(zwonderingeyes)\i[102]%(zrelaxedarms)%(zsmile)\i[304]GIR,\w5 keep observing %(himher) while we're here.%(irkens)"
+	"\0%(irken)%(zpose)%(zwonderingeyes)\i[102]%(zrelaxedarms)%(zsmile)\i[304]GIR,\w5 keep observing %(himher) while we're here.\w8\1%(gdutypose)%(gobey)%(irken)\i[96]Yes master!%(irkens)\![embed,OnGirDuty]"
+	"\0%(irken)%(zbackpose)%(zgreat)\i[100]\i[99]Mwah\i[96]ahahahahah!!!\n\i[301]\i[105]I got a %(amazing) plan idea!\n\n[half]\i[2001]%(irkens)(He is noting something down.)"
+	
+	
+	if zimpunched == 0
+	{
+		"\0%(zpose)%(zwonderingeyes)\i[100]%(zwonderingarms)%(zsatisfiedsmile)\i[304]I'm pretty happy of how the last plan went.\w8\1%(ghappy)Let's do it again!\0\i[105]\i[302]"
+		"\0%(zpose)\i[100]%(zangryeyes)\i[65]\i[145]\i[195]\i[304]The \_a[Dib]Dib\_a human ruined one of my plans!\w3.\w1.\w1. \w7%(zhappyarms)Again!"
+		"\0%(zpose)\i[100]%(zangryeyes)\i[65]\i[145]\i[195]\i[304]The \_a[Dib]Dib\_a human ruined one of my plans!\w3.\w1.\w1. \w7%(zhappyarms)Again!\w8\1%(gsadface)%(arms)Awww...\w5 %(ghappyface)You will do better next time!\w8\0\n\n[half]%(zboredeyes)%(zsatisfiedsmile)Yes!\w7%(zplotting) Yes I will!"
+		"\0%(irken)%(zpose)%(zwondering)\i[304]What about using squirrels for my evil plan?\w8\0\i[105]\i[302]\1%(irken)%(gsadface)%(arms)\i[92]I prefer piggies.%(irkens)"
+	
+		"\1\i[92]%(ghappyface)I wanna eat!\w8\0%(zpose)%(zlookg)%(zboredface)%(arms)\i[304]Urgh... \i[100]\i[50]\i[92]\i[304]Do you have some food?"
+		"\1%(gwondering)\i[92]Do you like piggies?"
+		"\1%(gwondering)\i[92]Do you have %(experimentanimal)?"
+		"\1%(gwondering)\i[92]Do you have %(experimentanimal)?\0%(irken)%(zsidepose)%(zlookg)%(zrelaxedarms)%(zboredeyes)%(zsmile)\i[304]Stop asking everybody about our test subjects.%(irkens)"
+		
+		"\0%(irken)%(zpose)%(zplotting)\i[100]I \i[105]\i[302]have to try this experiment.%(irkens)"
+		"\0%(irken)%(zpose)%(zwondering)Maybe\i[105]\i[302] I should get an other testing subject?%(irkens)"
+		"\0%(irken)%(zsidepose)%(zsmile)%(zwonderingeyes)%(arms)%(zlookg)\i[304]Did you get %(experimentanimal)?\w8\1%(gsatisfiedface)%(gobeyarms)%(irken)\i[92]Yes!%(irkens)"
+	
+	}
+	else
+	{
+		"\0%(zpose)%(zboredeyes)%(zsmile)%(arms)\i[100]\i[2001]\i[304](He is staring at you.)"
+		"\0%(zpose)%(zangryeyes)%(zsmile)%(arms)\i[100]\i[2001]\i[304](He looks warry.)"
+		"\1\i[92]%(ghappyface)I wanna eat!\w8\0%(zpose)%(zlookg)%(zboredface)%(arms)\i[304]Sorry,\w5\i[105]\i[302] I can't do anything for it."
+	}
+	
+	if zimpunched <= 0 && girpunched <= 0
+	{
+		"\1%(gsmile)%(geyes)%(arms)\i[92]Can I help you?"
+		"\1%(gsmile)%(geyes)%(arms)\i[92]Do you have something to play?"
+		"\1%(gsmile)%(geyes)%(arms)\i[92]Do you have dishes around?"
+		"\1%(gsatisfied)\i[92]Do you wanna come to our home?"
+		if useraffection > 300
+		{
+			"\1%(gsatisfied)\i[92]Do you wanna visit our base?\0%(zwondering)"
+		}
+	}
+	
+	if wasspiderbusy
+	{
+		{
+			"\1%(gsatisfiedface)\i[140]\i[192]\i[92]There is a monster!\w8%(zbackpose)%(zlookg)%(zworriedface)\i[142]\i[192]\i[304]What?!?\w7"
+			"\1%(gsatisfiedface)\i[140]\i[192]\i[92]There are giant carnivore hamsters coming!\w8"
+			"\1%(gwondering)\i[140]\i[192]\i[92]Huuuh,\w5 there is something in the dark!\w8%(zpose)%(zlookg)%(zwonderingface)\i[142]\i[192]\i[304]I don't see anything!\1\n\n[half]%(gsadface)It looks dangerous!\w8\0\n\n[half]Fine.\w7"
+			--
+			if !hasspiderlegs
+			{
+				"%(zspidertransition)%(zspiderfrontpose)"
+			}
+			else
+			{
+				"%(zfrontpose)"
+			}
+			--
+			"%(zworriedface)%(zplottingarms)\i[102] Where???"
+		}
+	}
+	
+	if girfoundfood == 1
+	{
+		"\0%(zfrontface)%(zfacepalmface)%(zexplainarms)\i[100]Are you hidding a lot of food in your files?"
+		"\0%(zfrontface)%(zfacepalmface)%(zexplainarms)\i[100]Why are you hidding food in your files?"
+		"\0%(zfrontface)%(zfacepalmface)%(zexplainarms)\i[100]Why hidding food in a computer?"
+		"\0%(zsidepose)%(zwonderingarms)%(zloog)%(zboredface)%(irken)Keep the food you're finding for yourself.%(irkens)"
+		"\0%(zsidepose)%(zwonderingarms)%(zloog)%(zboredface)%(irken)You should keep this food for later.%(irkens)"
+	}
+	
+	--
+	"\e"
+	
+}
+
+CoveredTalk
+{
+	if girspoke == 1
+	{
+		"\i[2001](You tell him you heard GIR speak.)\n\n[half]"
+		"\i[2001](You ask him why his dog speaks.)\n\n[half]"
+		"\i[2001](You ask him how is his dog speaking.)\n\n[half]"
+		"\i[2001](You tell him his dog speaks.)\n\n[half]"
+		"\i[2001](You express you surprise at his dog speaking ability.)\n\n[half]"
+		--
+		"%(zrandompose)%(zboredeyes)%(zrelaxedarms)%(zlookg)%(zsmile)\i[304]Dogs don't speak."
+		"%(gsadface)%(zrandompose)%(zangryeyes)%(zrelaxedarms)%(zsmile)%(zlookg)\i[304]This one is not speaking."
+		"%(gsadface)%(zrandompose)%(zangryeyes)%(zrelaxedarms)%(zsmile)%(zlookg)\i[304]Your earing organs tricked you."
+		"%(gsadface)%(zrandompose)%(zangryeyes)%(zrelaxedarms)%(zsmile)%(zlookg)\i[304]Your%(zwonderingface), \w5huh, \w5ears...%(zangryeyes)%(zsmile)%(zlookg) tricked you."
+	}
+	
+	if passhour >= 3
+	{
+		"\0%(zrandompose)%(zwonderingeyes)%(zsmile)%(zexplainarms)\i[100]\i[304]Maybe you should let me go home now?"
+		"\0%(zrandompose)%(zwonderingeyes)%(zsmile)%(zexplainarms)\i[100]\i[304]You should be aware I've homeworks to do at home."
+		"\0%(zrandompose)%(zwonderingeyes)%(zsmile)%(zexplainarms)\i[100]\i[304]Would you mind letting me go? \w7I've%(zwondering)\w1.\w1.\w1. \w5huh\w1.\w1.\w1.\w5 %(zexplainarms)\i[100]stuff to do at home."
+	}
+	
+	
+	"\0%(zpose)\i[92]%(zrelaxedarms)%(zwonderingeyes)\i[100]\i[63]\i[304]Do you have some,\w5\i[101] huh,\w5\i[146]\i[196]\i[62]\i[100] weaknesses to confess?"
+	"\0%(zpose)\i[92]%(zrelaxedarms)%(zwonderingeyes)\i[100]\i[63]\i[304]Do you have some,\w5\i[101] huh,\w5\i[146]\i[196]\i[62]\i[100] weaknesses to confess?\w7\i[129]\i[130]\i[144]\i[194] Tell meeeeeeee!!!!"
+	"\0%(zpose)\i[92]%(zrelaxedarms)%(zboredface)\i[100]\i[304]I'm a pretty busy human child.\w7 \i[125]\i[126]\i[62]\i[146]\i[196]So it would be pretty nice of you to let me go right now."
+	"\0%(zpose)%(zrelaxedarms)\i[100]%(zwonderingeyes)%(zsmile)\i[304]Is it normal for you to keep totally normal human childs here?\i[105]\i[302]"
+	"\0%(zpose)%(zrelaxedarms)\i[100]%(zwonderingeyes)%(zsmile)\i[304]Do you enjoy trapping people here?\i[105]\i[302]"
+	"\0%(zpose)%(zwondering)How \i[105]\i[302]did you bring us here?"
+	"\0%(zpose)%(zrelaxedarms)\i[100]%(zwonderingeyes)%(zsmile)\i[304]Don't you have normal human stuff to do?"
+	"\0%(zpose)%(zsmile)%(arms)%(zboredeyes)\i[100]\1%(gsadface)%(arms)I [st]\1wanna eat...\0Shh\i[105]\i[302]hhhhhhh....[st]"
+	"\0%(zpose)%(zwondering)\i[304]Why did you bring us here?"
+	"\0%(zpose)%(zwondering)\i[304]Do you bring a lot of people here?"
+	"\0%(zpose)%(zwondering)\i[304]Do you have access to a lot of universes?"
+	"\0%(zpose)%(zwondering)\i[304]Can you send people%(zexplainarms) into other universes?"
+	"\0%(zpose)%(zwonderingeyes)\i[100]%(zsmile)%(zexplainarms)\i[304]How a %(filthy) human like you brought us here?"
+	"\0%(irken)%(zpose)%(zwondering)\i[304]Mmh,\w5 \i[105]\i[302]I could build a portal here to access to other universes.%(irkens)"
+	
+	"\0%(irken)%(zpose)%(zwondering)\i[304]Maybe we will find interesting information here??%(irkens)"	
+	"\0%(irken)\i[92]%(zpose)%(zwonderingeyes)\i[68]%(zwonderingarms)\i[102]\i[304]Do you think we should conquer this place as well?\1\w8%(irken)%(ghappyface)\i[92]Are they having tacos?\w8%(zboredface)%(arms)%(zlookg)\n\n[half]Why did I ask...%(irkens)"
+	"\1%(irken)%(ghappyface)\i[92]I'll do some waffles.\0%(irken)%(zpose)%(zboredeyes)%(arms)%(zsmile)%(zlookg)\i[304]Not until we're back home.%(irkens)"
+	"\0%(ghappyface)%(irken)\i[92]I wanna eat!\w8\0%(irken)%(zpose)%(zrelaxedarms)%(zsmile)%(zboredeyes)\i[100]\i[304]You can get something once we're home.%(irkens)"
+	"\1%(gsatisfiedface)%(arms)%(irken)\i[92]Can I eat \i[192]this thing?\0%(irken)%(zpose)%(zboredeyes)%(zsmile)%(zwonderingarms)%(zlookg)\i[304]Don't touch anything.%(irkens)"
+	"\1%(gsadface)%(irken)\i[92]I can't do waffles here.\0%(irken)%(zpose)%(zrelaxedarms)%(zboredeyes)%(zsmile)%(zlookg)\i[304]\i[108]You did enough waffles for today.%(irkens)"
+	
+	
+	if wasspiderbusy
+	{
+		"\1%(irken)%(gsatisfiedface)\i[140]\i[192]\i[92]There is a monster!\w8%(irken)%(zbackpose)%(zlookg)%(zworriedface)\i[142]\i[192]\i[304]What?!? \w7%(zpose)%(zworriedface)%(zplottingarms)\i[102]Where???%(irkens)"
+	}
+	--
+	"\e"
+}
+
+WorriedTalk
+{
+	"%(zrandompose)%(zworried)"
+	--
+	"\i[304]"
+	--
+	"\i[2001](He looks worried.)"
+	"\i[2001](He is very tensed.)"
+	"\i[2001](He gives GIR a bad look.)"
+	"\i[2001](He doesn't look comfortable.)"
+	"\i[2001](He looks very anxious.)"
+	"\i[2001](He looks uncomfortable.)"
+	"\i[2001](He doesn't seem happy.)"
+	"\i[2001](He stays silent.)"
+	"%(irken)\i[92]I hope the base is still up.%(irkens)"
+	"%(irken)\i[92]GIR,\w5 everything is you fault!%(irkens)"
+	"I really wanna go."
+	"Why are you keeping me here?"
+	"Why don't you want to let me go?"
+	"Can't you just let me go?"
+}
+
+AllyTalk
+{
+	"\0%(zrandompose)\i[100]%(zwonderingeyes)%(zsatisfiedsmile)%(zexplainarms)\i[304]Do you have any plan idea to conquer your species?"
+	"\0%(zpose)%(zwondering)\i[304]I want a new plan,\w5\i[105]\i[302] one the \_a[Dib]Dib\_a human won't ruin."
+	"\0%(zpose)%(zwonderingeyes)\i[100]%(zsatisfiedsmile)%(zwonderingarms)\i[304]Do you think you could open a portal%(zexplainarms) to an other universe for me to conquer it?"
+	"\0%(zpose)%(zwondering)\i[304]What earthling species\i[105]\i[302] would be the most useful to my plan?"
+	"\0%(zfrontpose)%(zwonderingface)%(zexplainarms)\i[304]What kind of tools do you have here?"
+	"\0%(zpose)%(zwondering)\i[304]What earthling species would be the most useful to my plan?"
+	"\0%(zpose)%(zwondering)\i[304]What about poisonning their crops?\w7 %(zplotting)\i[101]So\i[105]\i[302] humans would starve and %(zgreat)\i[304]then surrender to me."
+	"\0%(zpose)%(zplotting)\i[100]\i[304]This new plan will make those %(filthy) humans\i[105]\i[302] finally surrender to my greatness!"
+	"\0%(zpose)%(zwondering)\i[304]Could we do experiements here?"
+	"\0%(zfrontpose)%(zwondering)\i[304]Do you like experimenting?"
+	"\0%(zfrontpose)%(zwondering)\i[304]Do you know an efficient weapon against bees?"
+	"\0%(zrandompose)%(zeyes)%(zsatisfiedsmile)\i[102]\i[301]I got a %(amazing) idea!\n\n[half]\i[2001]\i[105](He is taking some notes.)"
+	"\0%(zpose)%(zwondering)I'll have to ckeck on those repairs."
+	"\0%(zrandomepose)%(zwonderingarms)%(zwonderingface)\i[100]Would you fit in the \_a[Voot]Voot\_a?"
+	"\0%(zrandompose)%(zwondering)I hope the \_a[Voot]Voot\_a has been repaired."
+	
+	"\1%(gsatisfied)\i[92]Can I bring waffles here?\0%(zpose)%(zsatisfiedsmile)%(zboredeyes)%(zrelaxedarms)%(zlookg)\i[108]If\i[105]\i[302] you don't forget them."
+	"\1%(gwondering)\i[92]Do you have %(experimentanimal)?\0%(irken)%(zsidepose)%(zlookg)%(zrelaxedarms)%(zboredeyes)%(zsmile)Stop\i[105]\i[302] asking everybody about our test subjects.%(irkens)"
+	"\0%(zlookg)\1%(ghappyface)%(genthusiastarms)\i[92]Can I cook for you?\0%(zsidepose)%(zrelaxedarms)%(zboredeyes)%(zsatisfiedsmile)\i[100]\i[304]I don't think %(heshe) has the necessary tools."
+	"\1%(gsadface)%(arms)\i[92]I can't watch television here.\0\i[108]"
+	"\1%(gsatisfiedface)%(arms)\i[92]Hehehe."
+	"\1%(gsatisfiedface)%(arms)\i[92]Mhmmmhmhmmh...."
+	"\1%(gsatisfiedface)%(arms)\i[2001](He looks confortable here.)"
+	"\1\i[92]%(gsatisfied)Do you want %(goodfood)?"
+	"\1\i[92]%(gsatisfied)Do you have %(goodfood)?"
+	"\1\i[92]%(gsatisfied)Do you want %(badfood)?"
+	"\1%(gsatisfiedface)\i[96]What's the next plan?\w8\0%(zwondering)%(zlookg)\i[92]I'm still working on it."
+	"\1%(ghappy)\i[92]Last fly was fun!\w8\0%(zpose)%(zfacepalm)\i[100]Last fly the \_a[Voot]Voot\_a has been damaged!"
+	
+	if wasspiderbusy == 1
+	{
+		"%(zpose)\i[100]%(zboredface)%(zrelaxedarms)\i[304]I've an experiment to finish."
+		"%(zpose)\i[100]%(zsatisfiedface)%(zexplainarms)\i[304]Do you wanna watch my next experiment?"
+		"%(zpose)\i[100]%(zwonderingface)%(zexplainarms)\i[304]I need a certain object.\1\w8%(ghappyface)%(genthusiastarms)\i[92]A bee?\w8\0%(zlookg)%(zboredeyes)%(zsmile)That's\i[105]\i[302] not an object."
+	}
+	
+	--
+	"\e"
+}
+
+NotAllyTalk
+{
+	"\0%(zpose)\i[100]%(zplotting)\i[304]You will never discover my %(amazing) plan."
+	"\0%(zbackpose)%(zgreat)\i[100]\i[304]You will bow to my greatness!"
+	"\0%(zbackpose)%(zplotting)\i[100]\i[99]\i[304]You\i[96] cannot stop me!"
+	"\0%(zpose)%(zwondering)\i[100]\i[304]Are you with \_a[Dib]Dib\_a?"
+	"\0%(zpose)%(zwondering)\i[100]\i[304]Are you helping the \_a[Dib]Dib\_a human?"
+	"\0%(zpose)%(zwondering)\i[100]\i[304]Why do you care about this %(filthy) planet?"
+	"\0%(irken)%(zpose)%(zplotting)\i[102]We\i[105]\i[302] should get some valuable information here.%(irkens)"
+	"\0%(irken)\i[92]%(zlookg)\i[304]Keep observing %(himher),\w5 %(zsidepose)%(zplotting)\i[102]We\i[105]\i[302] must learn everything we can.%(irkens)\1%(ghappyface)%(irkens)"
+	"\0%(zpose)%(zplotting)\i[100]\i[304]You computer will be mine soon!"
+	"\0%(zpose)%(zgreat)\i[100]\i[99]\i[304]Soon\i[96] you will lay in despair!"
+	"\0%(zfrontpose)%(zgreatarms)%(zangryeyes)\i[62]\i[100]\i[304]You can't face us!"
+	"\0%(zfrontpose)%(zgreatarms)%(zangryeyes)\i[62]\i[100]\i[304]Nothing can face the \_a[Irkens]irken\_a armada!"
+	"\0%(zbackpose)%(zgreat)\i[100]\i[99]Mwah\i[96]ahahahahah!!!\n\i[301]\i[105]I got a %(amazing) plan to beat you!\n\n[half]\i[2001](He is noting something down.)"
+	"\0%(irken)%(zpose)%(zwondering)I'll have to ckeck on those repairs.%(irkens)"
+	"\0%(irken)%(zpose)%(zwondering)I hope the repairs of the \_a[Voot]Voot Cruiser\_a are done.%(irkens)"
+	
+	"\1%(ghappyface)Look!\n\i[304]\w8\i[306]\w9\i[305]I found a piggy!\w8\0%(zsuspiciousface)%(zlookg)%(irken)\i[92]\i[304]Keep it for yourself!%(irkens)"
+	"\1%(ghappyface)Look!\n\i[304]\w8\i[308]\w9\i[305]I found a cupcake!\w8\0%(zsuspiciousface)%(zlookg)%(irken)\i[92]\i[304]Keep it for yourself!%(irkens)\![OnGirFoundFood]"
+	{
+		"\0%(zpose)%(zwondering)\i[304]Should I conquer this place or the Earth in priority?\i[105]\i[302]"
+		--
+		""
+		"\1%(ghappyface)\i[92]Both!"
+	}
+	{
+		"\0%(irken)\i[92]%(zplotting)%(zlookg)\i[304]What did you learn about %(himher)?\w8"
+		--
+		"\1%(irken)%(gwondering)\i[92]Huh,\w5 %(ghappyface)%(arms)%(heshe) spends time here!"
+		"\1%(irken)%(gwondering)\i[92]Could we be friend?"
+		"\1%(irken)%(ghappyface)\i[92]It's weird here!"
+		"\1%(irken)%(gsatisfied)\i[92]I don't know!"
+		--
+		"\0\i[105]\i[302]\i[108]%(irkens)"
+		"\0\w8%(zboredface)Something\i[105]\i[302] valuable would be useful.%(irkens)"
+		"\0\w8%(zboredface)Don't\i[105]\i[302] you have something useful?%(irkens)"
+	
+	}
+	{
+		"\0%(irken)%(zsidepose)%(zplotting)%(zlookg)\i[304]Don't tell %(himher) our new plan!%(irkens)"
+		"\0%(irken)%(zsidepose)%(zplotting)%(zlookg)\i[304]Don't tell %(himher) our %(amazing) plan!%(irkens)"
+		--
+		"%(irkens)"
+		"\1\w8%(ghappyface)%(gsatisfiedarms)%(irken)\i[92]Okee dokee!%(irkens)"
+		"\1\w8%(gdutypose)%(gobey)%(irken)\i[92]Yes master!%(irkens)\![embed,OnGirDuty]"
+	}
+	
+	"\1%(gsadface)%(arms)\i[92]I can't watch television here.\0%(zangry)%(zlookg)%(irken)\i[96]\i[304]Don't tell %(himher) your mission!%(irkens)"
+	
+	if wasspiderbusy == 1
+	{
+		"\0%(zfrontpose)%(zsuspiciousface)%(zrelaxedarms)\i[304]Are you keeping us here to prevent me from working?"
+	}
+	--
+	"\e"
+}
+
+ContradictoryTalk
+{	
+	if zimpunched > 2
+	{
+		"\0%(zrandompose)%(zwondering)\i[92]\i[304]Is punching a demonstration of affection for you?"
+		"\0%(zrandompose)%(zwondering)\i[92]\i[304]Do you punch all the people you appreciate?"
+		"\0%(zrandompose)%(zwondering)\i[92]\i[304]If you're punching your friends,\w5 %(zexplainarms)then what are you doing to your enemies?"
+		"\0%(zfacepose)%(zwondering)\i[92]\i[304]What do you consider a gentle gesture?\i[304]\n\n[half](He is giving you an unsure look.)"
+		"\0%(zrandompose)%(zboredface)%(zplottingarms)\i[100]\i[304]Could you avoid hitting us?"
+	}
+	
+	{
+		"\0%(zwondering)\i[92]\i[304]What are you trying to achieve?"
+		"\0%(zpose)%(zboredface)\i[100]%(zrelaxedarms)\i[304]You seem weird even by human standards."		
+		"\0%(zrandompose)%(zwondering)How are you behaving with other humans?"
+		"\0%(zrandompose)%(zwondering)Is your behavior common to a lot of humans?"
+		"\0%(zrandompose)\i[100]%(zwonderingarms)%(zboredface)\i[2001]\i[304](He seems perplexed.)"
+		"\0%(zrandompose)\i[100]%(zwonderingarms)%(zboredface)\i[2001]\i[304](He looks puzzled.)"
+		"\0%(zpose)%(zboredeyes)%(zsmile)\i[105]\i[302]\i[2001](He is taking notes about you.)"
+		"\0%(zwondering)\i[92]Mmh... \w7%(zfacepose)%(zboredface)%(zexplainarms)Can you explain me some of the humans weird behaviors?"
+		"\0%(irken)%(zpose)%(zwondering)I'll have to ckeck on those repairs.%(irkens)"
+		"\0%(zpose)%(zplotting)\i[100]The \_a[Voot]Voot Cruiser\_a should be fully repaired now."
+		
+		"\1%(irken)\i[92]%(gwondering)Can I tell %(himher) about the plan?\w8\0%(zangryface)%(zlookg)%(irken)\i[96]\i[304]No!%(irkens)"
+		"\1%(irken)\i[92]%(gwondering)%(irken)Can I give %(himher) %(goodfood)?\w8%(zpose)%(zrelaxedarms)%(zboredface)\i[304]%(zlookg)%(irken)\i[108]You can propose %(himher) some.%(irkens)"
+		"\1%(irken)\i[92]%(gsatisfied)Do you like %(goodfood)?"
+		"\1%(gsadface)%(arms)\i[92]I can't watch television here.\0\i[108]"
+		"\1%(gsatisfiedface)\i[96]What's the next plan?\w8\0%(zangryface)%(zrelaxedarms)%(zlookg)%(irken)\i[92]Not in front of %(himher)!%(irkens)"
+		
+	}
+	--
+	"\e"
+	
+}
+
+ReactsOtherGhosts
+{
+	if "Dusty" _in_ ghostexlist || "RYS-0825" _in_ ghostexlist || "MVSans" _in_ ghostexlist
+	{
+		"\0%(zpose)%(zwonderingface)%(zpointarms)What are those beings?"
+	}
+	elseif "Azura" _in_ ghostexlist
+	{
+		"\0%(zpose)%(zwonderingface)%(zpointarms)What a weird human."
+	}
+	elseif "MiniDev" _in_ ghostexlist
+	{
+		"\0%(zpose)%(zwonderingface)%(zpointarms)Is this a robot?"
+	}
+	
+}
+
+///Changing pose functions----------------------------------------------------------------------------------------------------------------------------
+
+OnDisguise
+{
+	if disguised == 1
+	{
+		"\i[1]\w9\w9\w6\s[10]%(zeyes)\i[100]%(zsmile)%(arms)"
+		disguised = 2
+	}
+	else
+	{
+		"\i[1]\w9\w9\w6\s[11]%(zeyes)\i[100]%(zsmile)%(arms)"
+		disguised = 1
+	}
+	--
+	"\1\i[1]\w9\w9%(gpose)%(gsatisfiedface)%(arms)\0"
+}
+
+OnGDisguise
+{
+	if disguised == 1
+	{
+		disguised = 0
+	}
+	elseif disguised == 2
+	{
+		"\i[1]\9\w9%(gpose)%(gsatisfiedface)%(arms)"
+		"\i[1]\w9\w9\w6\s[11]%(zeyes)\i[100]%(zsmile)%(arms)"
+		disguised = 1
+	}
+}
+
+OnChoosePose
+{
+	if discovered == 1
+	{
+		if weekday == 6 || weekday == 0
+		{
+			if timeslot == "afternoon" || timeslot == "lunch" || timeslot == "morning"
+			{
+				_rand = RAND(3)
+				if _rand == 1
+				{
+					disguised = 2
+				}
+				elseif _rand == 0
+				{
+					disguised = 0
+				}
+				else
+				{
+					disguised = 1
+				}
+			}
+			elseif timeslot == "evening" || timeslot == "earlymorning"
+			{
+				if RAND(2) == 1
+				{
+					disguised = 2
+				}
+				else
+				{
+					disguised = 0
+				}
+			}
+			else
+			{
+				disguised = 0
+			}
+		}
+		else
+		{
+			if timeslot == "afternoon" || timeslot == "lunch" || timeslot == "morning"
+			{
+				disguised = 1
+			}
+			elseif timeslot == "evening" || timeslot == "earlymorning"
+			{
+				if RAND(2) == 1
+				{
+					disguised = 2
+				}
+				else
+				{
+					disguised = 0
+				}
+			}
+			else
+			{
+				disguised = 0
+			}
+		}
+	}
+	else
+	{
+		disguised = 1
+	}
+}
+
+///The aitalk select functions------------------------------------------------------------------------------------------------------------------------
+
+Select.tellcomputer1
+{
+	"\0\i[2001](You explain him he is on a human computer. He looks baffled.)\n\n[half]%(zpose)%(zwondering)A human computer?\w7 How is this possible?\e"
+	toldcomputer = 1
+}
+
+OnTellcomputer2
+{
+	toldcomputer = 2
+}
+
+Select.tellcomputer3
+{
+	"\i[2001](You tell him he is a program called ukagaka.)\n\n[half]%(zwondering)\i[92]Really?\w7 Fascinating.\e"
+	toldcomputer = 3
+}
+
+Select.tellcomputer3no
+{
+	"\i[2001](You prefered telling him nothing about his program status.)\e"
+}
+
+Select.goworried
+{
+	"\0\i[92]\i[52]\i[125]\i[126]Thank you...\s[-1]\n\n[half](He is gone...)\e"
+	worried = -1
+	useraffection++
+}
+Select.nogoworried
+{
+	"\0\i[123]\i[124]\i[115]\i[116]\i[96]\i[144]\i[194]Why do you keep me here when I have \f[italic,true]something important to do\f[italic,false]!!!\e"
+	"\0\i[123]\i[124]\i[115]\i[116]\i[92]\i[145]\i[195]You won't be able to keep me here forever so \i[96]why not letting me go now?!?\e"
+	useraffection--
+}
+
+OnZimWorried
+{
+	worried = 1
+}
+
+OnGirFoundFood
+{
+	girfoundfood = 1
+}
+
+OnGirDuty
+{
+	if girduty!= 1
+	{
+		 
+		girduty = 1
+	}
+	else
+	{
+		girduty = 0
+	}
+}
+
+
+Select.yesally
+{
+	isally = 1
+	"%(zpose)%(zplotting)\i[100]You made the right choice."
+}
+Select.noally
+{
+	isally = 2
+	"%(zpose)%(zwondering)Really?"
+}
+Select.yesenemy
+{
+	isally = -1
+	"%(zfrontpose)\i[100]%(zangryeyes)\i[62]\i[143]\i[193]I knew it!"
+}
+//--OnMinuteChange
+
+OnMinuteChange
+ {
+	timeslot = GetTimeSlot //this tells the ghost what time it is so the time related conversations above will work.
+	dayslot = GetDaySlot
+	
+	if OnCheckStatus
+	{
+		"%(defaultpose)"
+		{
+			"%(gsatisfied)"
+			"%(gsmile)%(geyes)%(arms)"
+			--
+			if worried == 1
+			{
+				"%(zpose)%(zworried)"
+			}
+			elseif worried == -1
+			{
+				//"%(zrelieved)%(arms)"
+			}
+			else
+			{	
+				"%(zpose)%(zsmile)%(zeyes)"
+				--
+				if "\i[303]" _in_ currentanimations[0]
+				{
+					"\i[105]\i[302]"
+				}
+				else
+				{
+					"%(arms)"
+					"%(zrelaxedarms)"
+					--
+					"\i[100]"
+					"%(zlookg)"
+				}
+			}
+		}
+		--
+		"\0"
+		--
+		if minute == 0 //These check what time it is. Here, it's seeing if the minute equals zero...
+		{
+			if hour == 12 && minute == 0//And the hour equals 12, ie it's noon. You can change this to some other hour if you want.
+			{
+				"\i[2001](It's noon.)"
+			}
+		}
+		elseif hour == 0 && minute == 0//If the hour is zero, aka midnight. Again, you can change this to whatever hour you want to check for.
+		{
+			"\i[2001](It's midnight.)"
+		}
+		elseif minute == 0
+		{
+			"\i[2001](It's %(hour12)'o clock.)"	
+					//%(hour12) stores the time. This is a general top of the hour notification. I personally like this because it helps me keep track of time when I've been working on something, so when a ghost is all "Hey it's 3 o clock" I can be like woah really when did that happen. If you think this is annoying though, you can just delete this bit of dialogue to leave this else statement blank, or leave "" in here instead.
+		}
+		
+			//Don't touch this part.
+		elseif mikireflag == 1
+		{
+			MikireTalk
+		}
+		elseif aitalkinterval == 0 
+		{
+		}
+	}
+ }
+
+//--OnSecondChange
+
+OnSecondChange
+ {
+	if passsec == 60
+ 	{
+	 	passsec = 0
+ 		passmin = passmin + 1
+	}
+ 	else
+ 	{
+	 	passsec = passsec + 1
+	}
+	--
+	if passmin == 60
+	{
+		passhour = passhour + 1
+		passmin = 0
+		cumuhour = cumuhour + 1
+	}
+	if mikireflag == 1 && reference1 == 0
+	{
+		EndMikireTalk
+ 	}
+	mikireflag = reference1
+	if reference2 == 1
+	{
+ 		//This dialogue is for when the two characters are overlapping each other. If you don't want your characters to care, you can just leave this blank.
+		
+ 		//"* Me and Triangle are overlapping.\w8\1That's strange since your resolution is %screenwidthx%screenheight, %(username). Shouldn't we have enough space?\4\e"
+		
+		//You can see here the use of two envelopes, screenwidth and screenheight, to tell the user their resolution. Oddly, they are not in parentheses. I'm not sure why this is, but they don't display right otherwise. An odd quirk with these two envelopes.
+		//Note also how Triangle moves away at the end of the dialogue. This is due to the \4 tag. That will make any one character move away from the other if they are able. I talked about this tag and its counterpart tag \5 in the SakuraScript page on the walkthrough.
+	}
+	--
+	if pickedupzim > 0
+	{
+		if pickedupzim == 7
+		{
+			"%(zboredface)Let me go now.\e"
+		}
+		elseif pickedupzim == 15
+		{
+			"%(zboredface)Didn't you hear me? \w7%(zangryeyes)Let me go.\e"
+		}
+		elseif ASEARCH(pickedupzim,20,25,30,35,40,45,50) != -1
+		{
+			"\i[101]%(zfacepalmface)Urgh.\e"
+		}
+		pickedupzim++
+	}
+	else
+	{
+		pickedupzim--
+	}
+	if pickedupgir > 0
+	{
+		if pickedupgir == 5
+		{
+			"%(ghappyarms)Yay!"
+		}
+		elseif pickedupgir == 15 || pickedupgir == 10
+		{
+			"%(ghappyarms)Weeeeeeee!!!!!\e"
+		}
+		elseif ASEARCH(pickedupgir,20,25,30,35,40,45,50) != -1
+		{
+			"%(ghappyarms)Hehehe."
+		}
+		pickedupgir++
+	}
+	else
+	{
+		pickedupgir--
+	}
+	
+	
+	
+ }
+ 
+ 
+ OnActivateTranslator
+ {
+	 hastranslator= 1
+ }
+
+ //---- MikireTalk ---------------------------------------------------------------------
+
+MikireTalk
+ {
+	"\i[92]Where am I?\n\n[half]\i[2001](You can push Ctrl-Shift-F12 to bring him back.)"
+}
+
+ //----EndMikireTalk--------------------------------------------------------------------
+
+EndMikireTalk
+ {
+	"\i[92]%(zwondering)Am back...\e"
+ }
+
+
+//**** OnSurfaceRestore *****************************************************************
+
+OnSurfaceRestore
+ {
+	"%(defaultpose)"
+ }
+
+ //snooping through your stuff--------------------------------------------------
+ 
+
+
+ //--OnKeyPress
+ //This defines the hotkeys your ghost will use. You can change these to whatever you want, but I don't really know why you would. I'd just leave this alone. Advanced Users can add new hotkeys attached to whatever function if you want.
+// OnKeyPress is now in zim-etc.dic 
