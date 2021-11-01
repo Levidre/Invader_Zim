@@ -20,7 +20,7 @@ file,ghost/master/zim-anchor.dic33e36afbe85cc0f12a1638faf5af1f46size=20436dat
 file,ghost/master/zim-bootend.dic71a6e0faf6a0ccbe150c6e7955abc257size=46960date=2021-10-25T19:43:45
 file,ghost/master/zim-chain.dicfa8d06193b9ff425158fa343f2eae632size=1253date=2021-06-28T19:11:19
 file,ghost/master/zim-commu.dicb6dd173bf62629522f982b69fd93aef1size=5454date=2021-10-30T20:31:32
-file,ghost/master/zim-etc.dic102d7b7b1e8215b9de2044e2f39d1c22size=40657date=2021-10-31T14:35:40
+file,ghost/master/zim-etc.dica4398a06efbb284930a7f15ed4b797cfsize=40671date=2021-11-01T03:00:58
 file,ghost/master/zim-menu.dic4539fa0c2c4f4be79aea3eb5fa1ae86esize=39042date=2021-11-01T02:47:20
 file,ghost/master/zim-mouse.dic978b17a52d24228479bebeb69d75928bsize=14905date=2021-10-31T01:17:21
 file,ghost/master/zim-nameteach.dic127fbc78334f0dd9a48936734421b17bsize=7550date=2021-06-15T21:04:36

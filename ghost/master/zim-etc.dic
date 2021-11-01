@@ -979,7 +979,7 @@ OnNarCreating
 		worried = 0
 	}
 
-	"\0%(zpose)%(zsatisfied)Creating a .nar file.\e"
+	"\0%(zpose)%(zsatisfied)\i[100]Creating a .nar file.\e"
  }
 
  //---- OnNarCreated -------------------------------------------------------------------
@@ -987,7 +987,7 @@ OnNarCreating
  
 OnNarCreated
 {
-	"\0%(zpose)%(zsatisfied)It's ready to conquer an other computer!\e"
+	"\0%(zpose)%(zsatisfied)\i[100]It's ready to conquer an other computer!\e"
 	//reference0 here will be the filename of the nar you just created. It should drop the nar in the folder where all your ghosts are listed, ssp\ghost\.
 }
 
