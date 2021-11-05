@@ -426,7 +426,7 @@ Select.deleteoff
 Select.TEACHBDAY
 {
 	dayslot = GetDaySlot //This is setting up in case today is the user's birthday.
-	"\f[italic,false]\x\![raise,OnChoiceSelect,configmenu]"
+	"\i[2001](In what month are you born?)\![open,inputbox,OnUserBornMonth,-1]"
 
 	//You can replace the dialogue up to the \![open,inputbox,OnUserBornMonth,-1] tag, leave that alone. You'll need the input box to get the information. Note that the month HAS to be put in in number format as well, so you might want to have your ghost mention that.
 }
@@ -442,13 +442,13 @@ OnUserBornMonth
 		bornmonth = _tempmonth
 		bornmonthprint = Printmonth
 		
-		"%(lsto)* So you were born in %(bornmonthprint).\n\w8* What day was it?\![open,inputbox,OnUserBornDay,-1]\e"
+		"\i[2001](You were born in %(bornmonthprint). What day was it?)\![open,inputbox,OnUserBornDay,-1]\e"
 		
 		//Here you can see the use of a bornmonthprint envelope to show the user what month they put in. Notice that it opens an inputbox at the end the same way the one above did. You can replace the dialogue up to the input box just as with above.
 	}
 	else //if the month isn't a valid month, like 32 or something.
 	{
-		"%(lsto)* That's not a valid month. Try again.\![open,inputbox,OnUserBornMonth,-1]\e"
+		"\i[2001](That's not a valid month. Try again.)\![open,inputbox,OnUserBornMonth,-1]\e"
 		
 		//You can replace this dialogue as well up to the \! tag, as mentioned. You need to leave the tag for the input box so they can put in a correct month.
 	}
@@ -550,7 +550,7 @@ OnUserBornDay
 				}
 			else //if the day isn't valid, like the 10046th or something.
 				{
-					"\0%(lsto)* That's not a valid day. Try again.\![open,inputbox,OnUserBornDay,-1]\e"
+					"\0\i[2001](That's not a valid day. Try again.)\![open,inputbox,OnUserBornDay,-1]\e"
 					
 					//Similar as you can see to the month check above. You can replace the dialogue here up to the tag as you just did, but make sure to leave the input box tag so the user can put in a correct day.
 				}
@@ -569,7 +569,7 @@ OnUserBornDay
 				}
 			else
 				{
-					"\0%(lsto)* That's not a valid day. Try again.\![open,inputbox,OnUserBornDay,-1]\e"
+					"\0\i[2001](That's not a valid day. Try again.)\![open,inputbox,OnUserBornDay,-1]\e"
 					
 					//And the same as above again! You see the pattern here?
 				}
@@ -587,7 +587,7 @@ OnUserBornDay
 				}
 			else
 				{
-					"\0%(lsto)That's not a valid day. Try again.\![open,inputbox,OnUserBornDay,-1]\e"
+					"\0\i[2001](That's not a valid day. Try again.)\![open,inputbox,OnUserBornDay,-1]\e"
 				}
 		}		
 }
@@ -597,19 +597,21 @@ OnUserBornDay
 
 birthchecked
 {
+	"\i[92]"
+	--
 	if userbirthday == dayslot //if today is the user's birthday
 		{
-			"\0It's your birthday today.\w7 Happy birthday, %(username).\e"
+			"\0It's your birthday today.\w7 Happy birthday.\e"
 			//replace this dialogue with whatever you like
 		}
 	elseif userbirthday == "12month 25day"
 		{
-			"\0* You were born on Christmas. \w7It's sad to have presents only once per year.\e"
+			"\0You were born on Christmas.\e"
 			//As you can see, you can set up an elseif statement to check if the user's birthday is any day you want! More on elseif statements in bootend.dic. In this case, there's specialized dialogue if the user was born on Christmas. You can replace this with whatever you like, or change the date you're checking as well, like to one of your character's birthdays if you want. You can also delete this elseif if you don't care.
 		}
 	else //if the birthday is not listed above.
 		{
-			"\0* Your birthday is %(bornmonthprint) %(borndayprint).\w7 I'll remember.\e"
+			"\0Your birthday is %(bornmonthprint) %(borndayprint).\w7 I'll probably not remember.\e"
 			//note the use of envelopes to display the newly set birthday properly. You can replace this dialogue as well, and you can use %(bornmonthprint) and %(borndayprint) to display the month and day in the new dialogue, if you want.
 		}
 }
@@ -725,9 +727,11 @@ Select.zimdosomething
 	}
 	else
 	{
-		"\0I'm not your servant."
-		"\0I won't do anything for a filthy human!"
-		"\0Why would I do anything for you?"
+		"\0\i[92]"
+		--
+		"I'm not your servant."
+		"I won't do anything for a filthy human!"
+		"Why would I do anything for you?"
 	}
 }
 

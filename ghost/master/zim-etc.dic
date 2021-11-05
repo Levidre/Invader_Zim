@@ -87,7 +87,8 @@ Select.AfterUpdate
 	
 	"\0\b2\i[2001]("
 	--
-	"Zim can now blow up his cover. The event isn't randomized so if all the conditions are present, he will blow up his cover. There are now the dialogues for when he has been discovered. Some animations have been added to dialogues too. \nThe relationship system is complete."
+	"Bugfixe update, this is only fixing some bugs and adding a new variable to lock common actions during events such as first boot."
+	//"Zim can now blow up his cover. The event isn't randomized so if all the conditions are present, he will blow up his cover. There are now the dialogues for when he has been discovered. Some animations have been added to dialogues too. \nThe relationship system is complete."
 	//"Surfaces fixed and a few dialogues are added."
 	--
 	")\x"
@@ -1291,20 +1292,23 @@ OnShellScaling
 
 OnKeyPress
 {
-	if reference0 == "t"
+	if lockedinevent != 1
 	{
-		if wasntTalking
+		if reference0 == "t"
 		{
-			OnAiTalk
+			if wasntTalking
+			{
+				OnAiTalk
+			}
 		}
-	}
-	elseif reference0 == "r"
-	{
-		OnLastTalk
-	}
-	elseif reference0 == "f1"
-	{
-		"\![open,readme]"
+		elseif reference0 == "r" && wasntTalking
+		{
+			OnLastTalk
+		}
+		elseif reference0 == "f1"
+		{
+			"\![open,readme]"
+		}
 	}
 }
 

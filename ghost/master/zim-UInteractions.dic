@@ -168,7 +168,7 @@ Select.askzimgir : nonoverlap
 	}
 	else
 	{
-		"\0%(zpose)%(zsatisfiedface)%(zexlainarms)\i[100]\i[304]It's just a normal dog."
+		"\0%(zpose)%(zsatisfiedface)%(zexplainarms)\i[100]\i[304]It's just a normal dog."
 		"\0%(zpose)%(zsatisfied)\i[100]\i[304]It's my dog."
 		"\0%(zpose)%(zsatisfied)\i[100]\i[304]Just a filthy dog."
 		"\0%(zpose)%(zsatisfied)\i[100]\i[92]\i[304]GIR?\w7%(zexplainarms) He is my dog."
@@ -388,7 +388,7 @@ Select.askothers
 {
 	if discovered == 1
 	{
-		"\![*]\q[The humans,askhumans]\n[half]\n"
+		"\_q\![*]\q[The humans,askhumans]\n[half]\n"
 		--
 		if askeddib == 1
 		{
@@ -440,7 +440,14 @@ Select.askhumans
 		"\0%(zboredface)%(zexplainarms)\i[100]They're just noisy and annoying."
 	}
 	--
-	"\n\n\n[half]\0\![*]\q[Ask something else,askothers]     \![*]\q[Nevermind,close]"
+	if discovered == 1
+	{
+		"\n\n\n[half]\0\![*]\q[Ask something else,askothers]     \![*]\q[Nevermind,close]"
+	}
+	else
+	{
+		"\n\n\n[half]\0\![*]\q[Ask something else,askzimquestions]     \![*]\q[Nevermind,close]"
+	}
 }
 
 Select.askpak : nonoverlap

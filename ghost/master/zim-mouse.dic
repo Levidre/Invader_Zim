@@ -4,7 +4,7 @@
 
 OnMouseMove
  {
-  	if nowmode != "QUIZ"
+  	if lockedinevent != 1
  	{
 		//---- reference3 determines the character in question
 		if reference3 == 0 //if the character is 0, aka the main character
@@ -223,13 +223,16 @@ Select.yesgircute
 
 OnMouseDoubleClick
  {
- 	if reference3 == 0 //if the character is 0, aka your main character
+	if lockedinevent != 1
 	{
-		MouseDoubleClickSakura
- 	}
-	else
-	{
-		MouseDoubleClickKero
+		if reference3 == 0 //if the character is 0, aka your main character
+		{
+			MouseDoubleClickSakura
+		}
+		else
+		{
+			MouseDoubleClickKero
+		}
 	}
  }
 

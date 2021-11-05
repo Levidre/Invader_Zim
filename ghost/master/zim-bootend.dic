@@ -46,6 +46,7 @@ OnFirstBoot
 	OnFirstBootStuff
 	OnInitBootVariables
 	_i = SAORI("saori\fontinstaller","get","Irken Normal (TrueType)")
+	lockedinevent = 1
 	if "%(_i)" == "0"
 	{
 		"\![enter,passivemode]\1\s[-1]\0\s[-1]The Irken font isn't installed. Some dialogues need this font. Do you want it to be installed?\n\n[half]\![*]\q[Yes,installirken]     \![*]\q[No,nofont]"
@@ -142,7 +143,7 @@ Select.choicefirsttheythem
 NameInput
 {
 	"\0\i[2001]\![leave,passivemode](What's your name?)\![open,inputbox,OnNameTeach,-1]\e"
-	
+	lockedinevent = 0
 }
 
 //--GetTimeSlot
@@ -230,6 +231,7 @@ OnInitBootVariables
 	lookdirection = 1
 	currentanimations = IARRAY
 	currentanimations = ("\0","\1")
+	lockedinevent = 0
 }
 
 //--normalboottalk
@@ -328,10 +330,12 @@ normalboottalk
 	if discovered != 1 && girspoke == 1 && useraffection >= 50 && (weekday == 6 || weekday == 0) && (timeslot == "afternoon" || timeslot == "evening")
 	{
 		"\0\s[11]\i[299]%(zsmile)\![enter,passivemode]\i[121]\i[122]\i[112]\i[114]\i[100]\i[146]\i[196]\i[300]\i[2]\i[99]\f[italic,true]WH\i[145]\i[195]AA\i[96]AA\i[109]\i[144]\i[194]AA\i[151]\i[201]AH\i[142]\i[192]HHHHHH\i[153]\i[203]!!!\f[italic,false]\nWhat have you done?\w7 Why did you have to bring me here \f[italic,true]right now. \i[144]\i[194]You ruined it.\f[italic,false]\1%(ghappy)Yay!\w7 Explosion!\0\n\n[half]\i[143]\i[193]\i[101]\i[123]And you! \w7You're not helpful!\n\i[100]\i[144]\i[194]It was something important and it exploded \f[italic,true]\i[147]\i[197]because you interfered! \w7\i[144]\i[194]Can't you just leave me alone when I'm doing important stuff!!!\f[italic,false]\x\i[2001](He didn't notice anything.)\n\n\n[half]\![*]\q[Have fun of him,discoverlaughing]\n\![*]\q[Kindly telling him something is missing,discoverkindly]"
+		lockedinevent = 1
 	}
 	elseif discovered != 1 && girspoke == 1 && useraffection >= 50 && (weekday < 6 && weekday > 0) && (timeslot == "latenight" || timeslot == "evening" || timeslot == "midnight")
 	{
 		"\0\s[11]\i[299]%(zsmile)\![enter,passivemode]\i[121]\i[122]\i[112]\i[114]\i[100]\i[146]\i[196]\i[300]\i[2]\i[99]\f[italic,true]WH\i[145]\i[195]AA\i[96]AA\i[109]\i[144]\i[194]AA\i[151]\i[201]AH\i[142]\i[192]HHHHHH\i[153]\i[203]!!!\f[italic,false]\nWhat have you done?\w7 Why did you have to bring me here \f[italic,true]right now. \i[144]\i[194]You ruined it.\f[italic,false]\1%(ghappy)Yay!\w7 Explosion!\0\n\n[half]\i[143]\i[193]\i[101]\i[123]And you! \w7You're not helpful!\n\i[100]\i[144]\i[194]I had to finish this for tomorrow and it exploded \f[italic,true]\i[147]\i[197]because you interfered! \w7\i[144]\i[194]Can't you just leave me alone when I'm doing important stuff! \w7I have to redo it from the beginning before tomorrow skool!!!\f[italic,false]\x\i[2001](He didn't notice anything.)\n\n\n[half]\![*]\q[Have fun of him,discoverlaughing]\n\![*]\q[Kindly telling him something is missing,discoverkindly]"
+		lockedinevent = 1
 	}
 	else
 	{
@@ -525,6 +529,7 @@ Select.discoverlaughing
 	"\i[2001](You tell him his ridiculous disguise is gone and that he has been quite dumb to think that his cover would have lasted forever.)\n\n[half]\i[92]What?\w7 What are you talking about?\i[203]\i[54]\w9 Wait a minute\i[4]\w2.\w2.\w2.\w9\w7\n\i[49]\i[119]\i[121]Oh no!\w7\n\n[half]\i[2001](Oh yes.)\n\n\n[half]\![*]\q[Reassure him,discoverreassure]\n\![*]\q[Scare him,discoverscare]"
 	useraffection -= 5
 	disguised=2
+	lockedinevent = 0
 }
 
 Select.discoverkindly
@@ -532,6 +537,7 @@ Select.discoverkindly
 	"\i[2001](You tell him he doesn't really need to disguise anymore because the explosion quite blowed up his cover.)\n\n[half]\i[92]What?\w7 What are you talking about?\i[203]\i[54]\w9 Wait a minute\i[4]\w2.\w2.\w2.\w9\w7\n\i[49]\i[119]\i[121]Oh no!\w7\n\n\n[half]\![*]\q[Reassure him,discoverreassure]\n\![*]\q[Scare him,discoverscare]"
 	useraffection += 5
 	disguised = 2
+	lockedinevent = 0
 }
 
 Select.discoverreassure
@@ -539,6 +545,7 @@ Select.discoverreassure
 	"\i[2001](You tell him it's fine and that you have nothing against cute little aliens.)\n\n[half]\i[219]\i[92]Huh,\w5 good for me I suppose?%(zpose)\i[100]%(zsmile)%(zeyes)\i[143]\i[193]\i[101]\1Can I talk now?\0\n\n[half]Yes,\w5 GIR you're allowed to talk in %(hisher) presence.\1\i[2001]\i[1]\n\n[half]Yay!!!\w9%(gpose)%(ghappy)\![leave,passivemode]"
 	useraffection += 5
 	discovered = 1
+	lockedinevent = 0
 }
 
 Select.discoverscare
@@ -546,6 +553,7 @@ Select.discoverscare
 	"\i[2001](You tell him you will inform the authorities of him.)\n\n[half]\i[219]\i[92]I didn't see any autorities you could inform here.\w7 %(zpose)\i[100]%(zsmile)%(zeyes)%(zwonderingarms)I don't think you can inform people of my own universe.\1\i[92]Can I put my disguise off?\0\n\n[half]Yeah,\w5 now they know.\1\i[2001]\i[1]\n\n[half]Yay!!!\w9%(gpose)%(gsatisfiedface)%(arms)\![leave,passivemode]"
 	useraffection -=5
 	discovered = 1
+	lockedinevent = 0
 }
 
 //--OnClose
