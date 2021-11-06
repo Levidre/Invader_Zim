@@ -391,7 +391,7 @@ TimesslotBootDialogues
 			}
 			else
 			{
-				"\0%(znormalpose)\i[65]%(zsmile)\i[100]\i[52]\i[41]\i[151]\i[201]\i[121]\i[130]I need to sleep as any normal human child right now!"
+				"\0%(znormalpose)\i[65]\i[100]\i[52]\i[41]\i[151]\i[201]\i[121]\i[130]I need to sleep as any normal human child right now!"
 			}
 		}
 		else
