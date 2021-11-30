@@ -1862,7 +1862,7 @@ surface.append10-29
 	142interval,never
 	142pattern0,1322,0,overlay,0,0
 	142pattern1,0,0,start,167
-	142pattern2,0,0,96,168
+	142pattern2,0,0,start,168
 	142pattern3,0,0,stop,141
 	142pattern4,0,0,stop,140
 	142pattern5,0,0,stop,143
