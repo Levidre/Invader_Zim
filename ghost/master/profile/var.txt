@@ -1,0 +1,9 @@
+Charset,UTF-8
+install,660172200
+homeurl_found,1
+homeurl,https://raw.githubusercontent.com/levidre/Invader_Zim/master/
+surfacecount,691
+update_result,OK(0)
+firstboot,660172200
+commitmemorysize,7979519
+lastboot,691954652

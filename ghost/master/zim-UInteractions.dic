@@ -185,9 +185,9 @@ Select.askgirzim : nonoverlap
 		"\1\i[92]%(gsadface)%(arms)He didn't want me to hug him..."
 		"\1\i[96]%(ghappyface)I made him waffles!"
 		"\1\i[96]%(gsadface)He doesn't eat all the food I do..."
-		"\1\i[96]%(gsadface)He is sometimes upset at me...\w8\0%(zfacepalmface)%(zpowerfularms)%(zlookg)\i[92]Do you realize how much stuff you break?"
+		"\1\i[96]%(gsadface)He is sometimes upset at me...\w8\0%(zfacepalmface)%(zpowerfularms)%(zlookg)\i[92]Do you realize how much stuff you break?\1"
 		"\1\i[96]%(ghappyface)He gives me missions!"
-		"\1\i[92]%(gsadface)He didn't eat all my waffles...\w8\0%(zlookg)%(zworriedface)I cannot eat a such quantity of waffles!\w7 %(zangryface)Do you want to make me sick?"
+		"\1\i[92]%(gsadface)He didn't eat all my waffles...\w8\0%(zlookg)%(zworriedface)I cannot eat a such quantity of waffles!\w7 %(zangryface)Do you want to make me sick?\1"
 	}
 	elseif discovered == 1
 	{
@@ -195,7 +195,7 @@ Select.askgirzim : nonoverlap
 		"\1\i[92]%(gsadface)He didn't want me to talk to you."
 		"\1\i[92]%(gsadface)He took all my piggies."
 		"\1\i[96]%(ghappyface)I made him waffles!"
-		"\1\i[92]%(gsadface)He didn't eat all my waffles...\w8\0%(zlookg)%(zworriedface)I cannot eat a such quantity of waffles!\w7 %(zangryface)Do you want to make me sick?"
+		"\1\i[92]%(gsadface)He didn't eat all my waffles...\w8\0%(zlookg)%(zworriedface)I cannot eat a such quantity of waffles!\w7 %(zangryface)Do you want to make me sick?\1"
 		if worried != -1
 		{
 			"\1\i[92]%(gsadface)He took all my piggies.\0%(zlookg)%(zboredyes)%(zrelaxedarms)I needed them."
@@ -519,9 +519,9 @@ Select.zimcompliment : nonoverlap
 		"\i[2001](You compliment his disguise.%(zsatisfied))"
 		"\i[2001](You tell him he has a nice disguise.%(zsatisfied))"
 		"\i[2001](You tell him his disguise is clever.%(zgreat)\i[100] He looks proud)"
-		"\i[2001](You compliment him on his outfit.)\n\n%(zfrontpose)%(zsatisfied)\i[100]It's just the standard Invader outfit."
-		"\i[2001](You tell him he must be a good invader.)\n\n%(zbackpose)\i[100]Of course I am!"
-		"\i[2001](You compliment his intelligence.)\n\n[half]%(zpose)My species is intellectually superior than the humans!"
+		"\i[2001](You compliment him on his outfit.)\n\n%(zfrontpose)%(zsatisfied)\i[100]\i[304]It's just the standard Invader outfit."
+		"\i[2001](You tell him he must be a good invader.)\n\n%(zbackpose)%(zgreat)\i[100]\i[304]Of course I am!"
+		"\i[2001](You compliment his intelligence.)\n\n[half]%(zpose)%(zsatisfiedface)%(zexplainarms)\i[100]\i[304]My species is intellectually superior than the humans!"
 		
 	}
 	else

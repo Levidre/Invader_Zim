@@ -217,6 +217,7 @@ MouseMoveKero
 Select.yesgircute
 {
 	"\0\i[125]\i[92]Hehehehahaha... %(zbackpose)\i[51]\i[100]\i[125]\i[126]\i[115]\i[116]\i[62]\i[99]\i[147]\i[197]Vict\i[96]ory is mine!!!\w5\n%(zpose)\i[100]\i[151]\i[201]\i[99]\i[115]\i[116]\i[127]\i[130]\i[51]\i[62]Mwah\i[96]ahahahahahahahahaha!!!\n%(zbackpose)\i[62]\i[54]\i[136]\i[137]\i[150]\i[200]\i[99]Mwah\i[96]ahahahahahahahhahahahahaha!!!!!"
+	findgircute = 1
 }
 
 //---- OnMouseDoubleClick -------------------------------------------------------
