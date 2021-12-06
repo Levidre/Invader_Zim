@@ -1,6 +1,6 @@
 charset,OSNative
 file,ghost/master/aya-shiori3-sup.dic8b89bbc757fb90c88adac74dd0dd14d2size=920date=2020-02-21T16:37:56
-file,ghost/master/descript.txt30f9b7a83d302dd2c69ccf61107d5fdcsize=2510date=2020-12-30T22:11:44
+file,ghost/master/descript.txt8707e7daa3a0f6a0a36a31f4a6bd76f0size=2510date=2021-12-05T17:48:50
 file,ghost/master/ico-zim.ico4865d911869911cd9847227008c31b5bsize=1406date=2021-10-31T14:50:40
 file,ghost/master/proxy_ex.dll8ff13a8c1b2b0261f61704c1f457cc8csize=48128date=2018-10-13T17:36:56
 file,ghost/master/saori/fontinstaller.dll3fc9e02a5d5348d400255fc6c655cf90size=73216date=2021-06-06T19:36:28
@@ -15,20 +15,20 @@ file,ghost/master/system_config.txt28032298f1c97f62edffb3583049b328size=836da
 file,ghost/master/yaya.dll574de3a1212adad81ddd883f883498dcsize=1241088date=2020-02-09T11:41:32
 file,ghost/master/yaya.txtef01ac8313a64e88202aa4e87b56c076size=1476date=2021-06-22T16:51:54
 file,ghost/master/yaya_config.txt70d3d059099f5b281ef5800d0adc248esize=3427date=2020-12-01T22:11:08
-file,ghost/master/zim-aitalk.dicca2e7ebe8a46620294c8dbd411e2fa19size=47453date=2021-10-31T14:55:10
+file,ghost/master/zim-UInteractions.dicb35380c9a60955ddfb8fd51b5718104asize=43129date=2021-12-06T01:17:09
+file,ghost/master/zim-aitalk.dicc936dc517ebb0e10df254682bab61dafsize=47800date=2021-12-06T01:00:09
 file,ghost/master/zim-anchor.dic33e36afbe85cc0f12a1638faf5af1f46size=20436date=2021-10-31T01:10:06
 file,ghost/master/zim-bootend.dic6f9a3448392b5ba8317b128f3f75c082size=47130date=2021-11-06T01:30:31
 file,ghost/master/zim-chain.dicfa8d06193b9ff425158fa343f2eae632size=1253date=2021-06-28T19:11:20
 file,ghost/master/zim-commu.dicb6dd173bf62629522f982b69fd93aef1size=5454date=2021-10-30T20:31:34
-file,ghost/master/zim-etc.dic169edd36b03c557c3dd047930559b835size=40869date=2021-11-05T23:45:36
+file,ghost/master/zim-etc.diccb843b05b244fe10e51dff19d8dbdfd7size=41039date=2021-12-06T01:35:50
 file,ghost/master/zim-menu.dic418cb8c1384849d7aa4c1ac88e1c4afbsize=39037date=2021-11-02T20:31:39
-file,ghost/master/zim-mouse.dic45e0232afbbe58cea6f6bc9a6e9c6244size=14944date=2021-11-05T23:31:49
+file,ghost/master/zim-mouse.dic0359ef09b828eed1fd68b9b5c3cda60esize=15040date=2021-12-06T00:47:50
 file,ghost/master/zim-nameteach.dic127fbc78334f0dd9a48936734421b17bsize=7550date=2021-06-15T21:04:38
 file,ghost/master/zim-plan.dice27074b6a1f29dc9c386102d0517984esize=11452date=2021-09-18T02:52:30
 file,ghost/master/zim-serikoparser.dic6a25879ed93e042e092e391197c66a37size=12045date=2020-11-24T22:33:50
 file,ghost/master/zim-string.dic211a0f4fa21cd9e80e86d6b9e7de2c03size=9407date=2021-11-01T02:51:00
-file,ghost/master/zim-UInteractions.dic8fadf8efc0dd82de5bf4d58eb18414c3size=42458date=2021-11-02T17:15:25
-file,ghost/master/zim-word.dicc01d52666c1f8556d06958eda29006eesize=16920date=2021-10-31T13:47:04
+file,ghost/master/zim-word.dice040e121bf90b2f162bb9ad55e37fe73size=16963date=2021-12-06T00:43:14
 file,install.txt0db3bff54ba5e6d68114ec5e3dab356dsize=104date=2020-12-30T22:04:30
 file,readme.txt66e385a3f39031e8c42dd69d0ad25104size=534date=2021-11-01T02:58:30
 file,shell/master/descript.txt663be9bf49157e35a9d13ea6ea568097size=5387date=2020-12-02T04:29:18
@@ -38,7 +38,7 @@ file,shell/master/menu_sidebar.pnac497c166123892d7660913754e387d0csize=3718da
 file,shell/master/menu_sidebar.pngf9d7d8b3cb751269caf44556f611a5d3size=20792date=2021-06-26T16:46:28
 file,shell/master/oldsurfaces.txtfc15201ea0b797d464ef726c0689c2dfsize=36944date=2020-12-07T13:36:44
 file,shell/master/read me.txtd41d8cd98f00b204e9800998ecf8427esize=0date=2020-08-19T19:03:50
-file,shell/master/surface list.txtee03385b70a6c0a3f0679707df0ab03esize=4661date=2021-10-30T23:49:32
+file,shell/master/surface list.txtd50410326b96ae65d70717768408fa24size=4678date=2021-12-06T00:43:26
 file,shell/master/surface100.png7fe339057ba5f0633dec041f8380a977size=3092date=2021-01-04T13:11:36
 file,shell/master/surface1000.pnge55fdd58399253e82f32ac4450b20d20size=9207date=2020-12-02T22:25:16
 file,shell/master/surface1001.png6ef5538c1a162a33543ae9374c4faa5bsize=2265date=2020-11-29T07:21:30

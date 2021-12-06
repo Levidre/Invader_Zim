@@ -37,7 +37,7 @@ OnFileDrop2
 				--
 				if ASEARCH("Azura",ghostexlist) != -1
 				{
-					"\n(But you can give this to Azura who is having one one.)"
+					"\n(But you can give this to Azura who is having one.)"
 				}
 			}
 			when ".m3u",".pls"
@@ -46,7 +46,7 @@ OnFileDrop2
 				--
 				if ASEARCH("Azura",ghostexlist) != -1
 				{
-					"\n(But you can give this to Azura who is having one one.)"
+					"\n(But you can give this to Azura who is having one.)"
 				}
 			}
 			others //Any other file format. As a note here, if you drop something ghost-related on them that does not have an install.txt, then they won't install it and will just say this response. If you are testing your balloon or nar files and you get this response instead of a proper installation, you should check and make sure you have an install.txt in the file!
@@ -87,7 +87,8 @@ Select.AfterUpdate
 	
 	"\0\b2\i[2001]("
 	--
-	"Bugfixe update, this is only fixing some bugs and adding a new variable to lock common actions during events such as first boot."
+	"New bugfixe update. A bug with some unlockable dialogues has been fixed, some typos and general appearance issues have been fixed too.\nThe ghost name has been changed to 'Zim and GIR'."
+	//"Bugfixe update, this is only fixing some bugs and adding a new variable to lock common actions during events such as first boot."
 	//"Zim can now blow up his cover. The event isn't randomized so if all the conditions are present, he will blow up his cover. There are now the dialogues for when he has been discovered. Some animations have been added to dialogues too. \nThe relationship system is complete."
 	//"Surfaces fixed and a few dialogues are added."
 	--
@@ -444,12 +445,12 @@ OnInstallBegin
 		 }
 		 else
 		 {
-			 "\1%(gpose)\i[100]%(arms)%(zeyes)%(zsmile)I will install the file.\w8It contains an install.txt file.\e"
+			 "\1%(gpose)%(arms)%(geyes)%(gsmile)I will install the file.\w8It contains an install.txt file.\e"
 		 }
 	 }
 	 else
 	 {
-		 "\0%(zlookg)GIR,\w5 do it!\w8\1%(gpose)\i[100]%(arms)%(zeyes)%(zsmile)I will install the file.\w8It contains an install.txt file.\e"
+		 "\0%(zlookg)GIR,\w5 do it!\w8\1%(gpose)%(arms)%(geyes)%(gsmile)I will install the file.\w8It contains an install.txt file.\e"
 	 }
 	
  }

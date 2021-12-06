@@ -241,8 +241,8 @@ NeutralTalk
 			"\0%(zsatisfiedface)%(arms)\i[92]\i[304]If you have some spare %(fileextent),\w5\i[105]\i[302] you can give it to me."
 			"\0%(zsatisfiedface)%(arms)\i[92]\i[304]If you have some spare %(dangerousfileextent),\w5\i[105]\i[302] you can give them to me.\n\n[half]\i[2001](You will probably never.)"
 			"\0%(zwondering)%(irken)\i[92]\i[304]It looks so different from our computer from the inside.\i[105]\i[302]%(irkens)"
-			"\0%(zfrontpose)%(zexplainarms)%(zwonderingface)\i[100]Is your computer having an AI?"
-			"\0%(zfrontpose)%(zexplainarms)%(zwonderingface)\i[100]Can your computer respond to vocal commands?"
+			"\0%(zfrontpose)%(zexplainarms)%(zwonderingeyes)%(zwonderingsmile)\i[100]Is your computer having an AI?"
+			"\0%(zfrontpose)%(zexplainarms)%(zwonderingeyes)%(zwonderingsmile)\i[100]Can your computer respond to vocal commands?"
 		}
 		elseif toldcomputer >= 1
 		{
@@ -274,7 +274,7 @@ NeutralTalk
 			"\0%(zpose)%(zwondering)\i[304]Do I have access to other computers?\n\n[half]\i[2001](You tell him you don't know, he doesn't have from yours at least.)\i[105]\i[302]"
 			if ARRAYSIZE(ghostexlist) > 0
 			{
-				"%(zrandompose)%(zwonderingface)%(zexplainarms)\i[100]\i[304]Are those ukagakas too?\n\n[half]\i[2002](He made a little gesture to a ghost nearby.)"
+				"%(zrandompose)%(zwonderingeyes)%(zwonderingsmile)%(zexplainarms)\i[100]\i[304]Are those ukagakas too?\n\n[half]\i[2002](He made a little gesture to a ghost nearby.)"
 				"%(zrandompose)%(zwondering)\i[304]How many ukagakas exist?"
 				"%(zrandompose)%(zwondering)\i[304]They're weird.\n\n[half]\i[2002](He is talking about the ghost nearby.)"
 			}
@@ -344,7 +344,7 @@ NeutralTalk
 		elseif passhour > 2
 		{
 			"\0%(zpose)\i[100]%(arms)%(zboredface)\i[304]Don't you have stuff to do?\w7%(zrelaxedarms)\i[126] Can't you just let us go?"
-			"\0%(zwonderingface)\i[100]\i[92]\i[304]You're going to keep me here for how many time?"
+			"\0%(zwonderingeyes)%(zwonderingsmile)\i[100]\i[92]\i[304]You're going to keep me here for how many time?"
 		}
 		
 		if wasspiderbusy == 1
@@ -384,8 +384,8 @@ NeutralTalk
 		"\1%(gsatisfiedface)%(arms)\i[2001](He is watching a %(dangerousfileextent). You feel anxious about it.)"
 		
 		"\0\i[2001]%(zlookg)%(zboredeyes)\i[304](He is watching GIR.)"
-		"\0%(zpose)%(zwonderingface)\i[105]\i[301]\i[2001](He is taking some notes.)"
-		"\0%(zpose)%(zwonderingface)\i[105]\i[301]\i[2001](He is noting something down.)"
+		"\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)\i[105]\i[301]\i[2001](He is taking some notes.)"
+		"\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)\i[105]\i[301]\i[2001](He is noting something down.)"
 		"\0\i[2001]%(zboredeyes)\i[105]\i[301](He is taking notes about your computer.)"
 		
 		"\0%(irken)%(zsidepose)%(zwonderingeyes)%(zsmile)%(zlookg)%(zrelaxedarms)\i[304]Did you get the ingredients?\1\w8%(gsatisfiedface)%(irken)\i[92]What ingredients?\0\n\n[half]\w8%(zpose)%(zfacepalm)\i[103]Urgh!\w7 %(zpowerfularms)%(zlookg)I gave you a list of ingredients to get!\i[105]\i[302]%(irkens)"
@@ -412,7 +412,7 @@ DiscoveredTalk
 	"\0%(zpose)%(zwondering)How useful your computer could be to me..."
 	"\0%(zpose)%(zwondering)Do your computers even have AI?"
 	"\0%(zpose)%(zwondering)Your computer doesn't seem very talkative."
-	"\0%(zrandompose)%(zwonderingface)%(zexplainarms)Do\i[100] you have space ships?"
+	"\0%(zrandompose)%(zwonderingeyes)%(zwonderingsmile)%(zexplainarms)Do\i[100] you have space ships?"
 	
 	"\0\i[304]\i[61]\i[52]\i[42]\i[133]\i[134]\i[152]\i[202]\1\f[italic,true]\i[96]\i[117]\i[118]TAAAAAAAACOOOOOOOOOOOOOOOOSSSSSSSS!!!!!!!\f[italic,false]\i[136]\i[137]\i[62]\0\i[92]\i[121]%(zlookg)\i[122]\i[68]\i[144]\i[190]\i[51]GIR please."
 	"\0\i[304]\i[61]\i[52]\i[42]\i[133]\i[134]\i[152]\i[202]\1\f[italic,true]\i[96]TAAAAAAAACOOOOOOOOOOOOOOOOSSSSSSSS!!!!!!!\f[italic,false]\i[136]\i[137]\i[62]\0\i[92]\i[127]\i[128]\i[140]\i[190]Don't pay attention to him."
@@ -420,7 +420,7 @@ DiscoveredTalk
 	"\1\i[96]%(ghappyface)La lala la lalala lala la....\0%(zsidepose)%(zangry)%(zlookg)No! \w7Stop those screams immediately!\1\n\n[half]But am singing!\0\n\n[half]Then stop it!"
 	"\1\i[92]%(ghappyeyes)\i[68]Pumpum pum pumpumpum...\0%(zsidepose)%(zlookg)%(zrelaxedarms)%(zboredface)Can you stop this noise?\w7 It's annoying!"
 	"\1\i[92]%(ghappyeyes)\i[68]Mmh mhm mmmhmm hmm....\0%(zfrontpose)%(zwondering)Is%(zlookg) that a song?"
-	"\1\i[92]%(ghappyface)%(arms)Do you like peace?\0%(zpose)%(zwonderingface)%(arms)%(zlookg)\i[304]Why are you asking %(himher) that?\e:chain=chickenricesong1"
+	"\1\i[92]%(ghappyface)%(arms)Do you like peace?\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(arms)%(zlookg)\i[304]Why are you asking %(himher) that?\e:chain=chickenricesong1"
 	"\1%(gsatisfiedface)%(arms)\i[92]Can I eat \i[192]this?\n\n[half]\i[2001](You jump on the innocent %(fileextent) before GIR takes it.)"
 	"\1%(gsatisfiedface)%(arms)\i[92]Can I eat \i[192]this?\n\n[half]\i[2001](You jump on the %(dangerousfileextent) before GIR takes it. Who knows what would happen if he eats it.)"
 	"\1%(ghappyface)%(arms)\i[92]I saw a squirrel!\w8\0%(zwonderingeyes)%(arms)\i[92]Where?\w8\1\n\n[half]%(gsadface)%(gwonderingarms)I don't know..."
@@ -482,7 +482,7 @@ DiscoveredTalk
 		{
 			"\1%(gsatisfiedface)\i[140]\i[192]\i[92]There is a monster!\w8%(zbackpose)%(zlookg)%(zworriedface)\i[142]\i[192]\i[304]What?!?\w7"
 			"\1%(gsatisfiedface)\i[140]\i[192]\i[92]There are giant carnivore hamsters coming!\w8"
-			"\1%(gwondering)\i[140]\i[192]\i[92]Huuuh,\w5 there is something in the dark!\w8%(zpose)%(zlookg)%(zwonderingface)\i[142]\i[192]\i[304]I don't see anything!\1\n\n[half]%(gsadface)It looks dangerous!\w8\0\n\n[half]Fine.\w7"
+			"\1%(gwondering)\i[140]\i[192]\i[92]Huuuh,\w5 there is something in the dark!\w8%(zpose)%(zlookg)%(zwonderingeyes)%(zwonderingsmile)\i[142]\i[192]\i[304]I don't see anything!\1\n\n[half]%(gsadface)It looks dangerous!\w8\0\n\n[half]Fine.\w7"
 			--
 			if !hasspiderlegs
 			{
@@ -603,7 +603,7 @@ AllyTalk
 	"\0%(zfrontpose)%(zwondering)\i[304]Do you know an efficient weapon against bees?"
 	"\0%(zrandompose)%(zeyes)%(zsatisfiedsmile)\i[102]\i[301]I got a %(amazing) idea!\n\n[half]\i[2001]\i[105](He is taking some notes.)"
 	"\0%(zpose)%(zwondering)I'll have to ckeck on those repairs."
-	"\0%(zrandomepose)%(zwonderingarms)%(zwonderingface)\i[100]Would you fit in the \_a[Voot]Voot\_a?"
+	"\0%(zrandomepose)%(zwonderingarms)%(zwonderingeyes)%(zwonderingsmile)\i[100]Would you fit in the \_a[Voot]Voot\_a?"
 	"\0%(zrandompose)%(zwondering)I hope the \_a[Voot]Voot\_a has been repaired."
 	
 	"\1%(gsatisfied)\i[92]Can I bring waffles here?\0%(zpose)%(zsatisfiedsmile)%(zboredeyes)%(zrelaxedarms)%(zlookg)\i[108]If\i[105]\i[302] you don't forget them."
@@ -616,14 +616,14 @@ AllyTalk
 	"\1\i[92]%(gsatisfied)Do you want %(goodfood)?"
 	"\1\i[92]%(gsatisfied)Do you have %(goodfood)?"
 	"\1\i[92]%(gsatisfied)Do you want %(badfood)?"
-	"\1%(gsatisfiedface)\i[96]What's the next plan?\w8\0%(zwondering)%(zlookg)\i[92]I'm still working on it."
+	"\1%(gsatisfiedface)\i[96]What's the next plan?\w8\0%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)%(zlookg)\i[92]I'm still working on it."
 	"\1%(ghappy)\i[92]Last fly was fun!\w8\0%(zpose)%(zfacepalm)\i[100]Last fly the \_a[Voot]Voot\_a has been damaged!"
 	
 	if wasspiderbusy == 1
 	{
 		"%(zpose)\i[100]%(zboredface)%(zrelaxedarms)\i[304]I've an experiment to finish."
 		"%(zpose)\i[100]%(zsatisfiedface)%(zexplainarms)\i[304]Do you wanna watch my next experiment?"
-		"%(zpose)\i[100]%(zwonderingface)%(zexplainarms)\i[304]I need a certain object.\1\w8%(ghappyface)%(genthusiastarms)\i[92]A bee?\w8\0%(zlookg)%(zboredeyes)%(zsmile)That's\i[105]\i[302] not an object."
+		"%(zpose)\i[100]%(zwonderingeyes)%(zwonderingsmile)%(zexplainarms)\i[304]I need a certain object.\1\w8%(ghappyface)%(genthusiastarms)\i[92]A bee?\w8\0%(zlookg)%(zboredeyes)%(zsmile)That's\i[105]\i[302] not an object."
 	}
 	
 	--
@@ -635,9 +635,9 @@ NotAllyTalk
 	"\0%(zpose)\i[100]%(zplotting)\i[304]You will never discover my %(amazing) plan."
 	"\0%(zbackpose)%(zgreat)\i[100]\i[304]You will bow to my greatness!"
 	"\0%(zbackpose)%(zplotting)\i[100]\i[99]\i[304]You\i[96] cannot stop me!"
-	"\0%(zpose)%(zwondering)\i[100]\i[304]Are you with \_a[Dib]Dib\_a?"
-	"\0%(zpose)%(zwondering)\i[100]\i[304]Are you helping the \_a[Dib]Dib\_a human?"
-	"\0%(zpose)%(zwondering)\i[100]\i[304]Why do you care about this %(filthy) planet?"
+	"\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Are you with \_a[Dib]Dib\_a?"
+	"\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Are you helping the \_a[Dib]Dib\_a human?"
+	"\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[304]Why do you care about this %(filthy) planet?"
 	"\0%(irken)%(zpose)%(zplotting)\i[102]We\i[105]\i[302] should get some valuable information here.%(irkens)"
 	"\0%(irken)\i[92]%(zlookg)\i[304]Keep observing %(himher),\w5 %(zsidepose)%(zplotting)\i[102]We\i[105]\i[302] must learn everything we can.%(irkens)\1%(ghappyface)%(irkens)"
 	"\0%(zpose)%(zplotting)\i[100]\i[304]You computer will be mine soon!"

@@ -553,10 +553,7 @@ zwonderingface
 	"\i[101]"
 	"\i[102]"
 	--
-	"\i[60]"
-	"\i[63]"
-	"\i[66]"
-	"\i[69]"
+	zwonderingsmile
 }
 
 zwonderingeyes
@@ -586,6 +583,14 @@ zwonderingeyes
 	--
 	"\i[112]\i[114]"
 	"\i[119]\i[120]"
+}
+
+zwonderingsmile
+{
+	"\i[60]"
+	"\i[63]"
+	"\i[66]"
+	"\i[69]"
 }
 
 zwonderingarms

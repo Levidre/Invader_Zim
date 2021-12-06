@@ -147,8 +147,8 @@ Select.askzimgir : nonoverlap
 		"\0%(zpose)%(zsatisfiedface)\i[100]%(zrelaxedarms)\i[304]Don't you have some food to please him?"
 		"\0%(zpose)%(zsatisfiedsmile)%(zwonderingeyes)\i[100]%(zrelaxedarms)\i[304]Do you have some cookies to keep him calm for a moment?\1\i[92]%(ghappy)Yeah!\w7 Cookies!"
 		"\0%(zpose)%(zsatisfied)\i[100]\i[105]\i[302]My sidekick."
-		"\0%(zpose)%(zsatisfiedface)%(zexplainarms)\i[304]He destroys stuff but generally not the right ones."
-		"\0%(zpose)%(zwonderingface)%(zrelaxedarms)\i[100]\i[92]\i[304]Did I mention he isn't my only sidekick?"
+		"\0%(zpose)%(zsatisfiedface)%(zexplainarms)\i[100]\i[304]He destroys stuff but generally not the right ones."
+		"\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zrelaxedarms)\i[100]\i[92]\i[304]Did I mention he isn't my only sidekick?"
 		"\0%(zpose)%(zsatisfied)\i[100]\i[304]He is a special model of SIR unit."
 		if disguised == 1
 		{
@@ -161,10 +161,10 @@ Select.askzimgir : nonoverlap
 		"\0%(zrandomepose)\i[100]%(zwonderingeyes)%(arms)%(zsmile)\i[304]He is here to serve me."
 		"\0%(zrandompose)%(arms)%(zsmile)\i[100]%(zboredeyes)\i[304]He is my robot slave.\w7%(zlookg)%(zrelaxedarms) Even if he isn't always useful."
 		"\0%(zpose)%(zrelaxedarms)\i[100]%(zboredeyes)%(zlookg)\i[63]\i[304]Not the best robot,\w5%(zexplainarms) \i[105]\i[302]but he will always be superior to anything you have on this filthy planet."
-		"\0%(zrandompose)%(smile)%(zrelaxedarms)%(zboredeyes)%(zlookg)\i[304]Annoying most of the time and useful sometimes."
+		"\0%(zrandompose)%(zsmile)%(zrelaxedarms)%(zboredeyes)%(zlookg)\i[304]Annoying most of the time and useful sometimes."
 		"\0%(zfrontpose)\i[143]\i[193]%(zsatisfiedsmile)\i[100]%(zboredeyes)\i[304]Despite everything he will always be better than you."
-		"\0%(zpose)%(zsatisfiedsmile)%(zrelaxedarms)%(zboredeyes)%(zlookg)\i[63]\i[304]My sidekick."
-		"\0%(zpose)%(zsatisfiedface)%(zexplainarms)\i[304]He destroys stuff but generally not the right ones."
+		"\0%(zpose)%(zrelaxedarms)%(zboredeyes)%(zlookg)\i[63]\i[304]My sidekick."
+		"\0%(zpose)%(zsatisfiedface)%(zexplainarms)\i[100]\i[304]He destroys stuff but generally not the right ones."
 	}
 	else
 	{
@@ -233,7 +233,7 @@ Select.askgirgir : nonoverlap
 			--
 			if worried != -1
 			{
-				"\n\n[half]\0%(zpose)%(zwonderingface)\i[100]%(zexplainarms)Do you really know what a friend is?"
+				"\n\n[half]\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)\i[100]%(zexplainarms)Do you really know what a friend is?"
 				"\n\n[half]\0%(zwonderingface)"
 			}
 			
@@ -242,7 +242,7 @@ Select.askgirgir : nonoverlap
 		"\1\i[92]%(gwondering)I wanted to be a mongoose..."
 		"\1\i[96]%(ghappy)I like television!"
 		"\1\i[96]%(ghappy)I like tacos!"
-		"\1\i[96]%(ghappy)I break stuff!\w8%(zsidepose)%(zangryface)%(zpowerfularms)%(zlookg)\i[99]Do\i[96]n't be proud of it!"
+		"\1\i[96]%(ghappy)I break stuff!\w8%(zsidepose)%(zangryface)%(zpowerfularms)%(zlookg)\i[99]Do\i[96]n't be proud of it!\1"
 	}
 	elseif discovered == 1
 	{
@@ -269,7 +269,7 @@ Select.askgirgir : nonoverlap
 		{
 			"\0%(zpose)%(zwonderingeyes)\i[100]\i[68]%(zrelaxedarms)Dogs can't talk about themselves.%(gsadface)\0"
 			"\0\i[92]%(zboredface)He can't respond to you.\1\i[92]Uh?\0\n\n[half]%(zlookg)No,\w5 you can't respond.\1\n\n[half]%(gsadface)Awhh."
-			"\0%(zsidepose)%(zboredeyes)%(zlookg)%(zrelaxearms)He is just a regular dog."
+			"\0%(zsidepose)%(zboredeyes)%(zlookg)%(zrelaxedarms)%(zsmile)He is just a regular dog."
 		}
 		
 	}
@@ -301,7 +301,7 @@ Select.askzimappearance : nonoverlap
 		"\0%(zbackpose)\i[54]\i[136]\i[137]%(zrelaxedarms)\i[63]\i[304]I'm a true invader."
 		"\0%(zbackpose)\i[63]\i[50]\i[92]\i[136]\i[137]%(zrelaxedarms)\i[304]My size is perfect to infiltrate humans."
 		"\0%(zbackpose)\i[62]\i[54]\i[92]\i[136]\i[137]\i[143]\i[193]\i[304]I know I look great."
-		"\0%(zpose)%(zsatisfied)\i[304]The humans are so easily fooled!"
+		"\0%(zpose)%(zsatisfied)\i[100]\i[304]The humans are so easily fooled!"
 		if disguised == 1
 		{
 			"\0%(zbackpose)%(zsatisfied)\i[100]\i[304]Humans are dumb enough to be fooled by my disguise!"
@@ -310,7 +310,7 @@ Select.askzimappearance : nonoverlap
 	}
 	else
 	{
-		"\0%(zpose)%(zwonderingface)\i[100]%(zrelaxedarms)\i[304]Never saw a human with a skin condition?"
+		"\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)\i[100]%(zrelaxedarms)\i[304]Never saw a human with a skin condition?"
 		"\0%(zpose)%(zboredeyes)%(zsatisfiedsmile)%(zrelaxedarms)\i[100]\i[304]I just have a skin condition."
 		"\0%(zpose)%(zboredeyes)%(zsatisfiedsmile)%(zrelaxedarms)\i[100]\i[304]My skin color comes from a totally normal skin condition."
 		"\0%(zpose)%(zboredeyes)%(zsatisfiedsmile)%(zrelaxedarms)\i[100]\i[304]I'm totally normal,\w5 I just have a skin condition."
@@ -419,7 +419,7 @@ Select.askhumans
 	{
 		"%(zrandompose)%(zboredeyes)%(zsmile)%(zwonderingarms)\i[100]\i[304]I suppose there are a few exceptions."
 		"%(zrandompose)%(zboredeyes)%(zsmile)%(zwonderingarms)\i[100]\i[304]I suppose they aren't all that bad."
-		"%(zrandompose)%(zwondering)\i[100]\i[304]You seem different of the typical ones."
+		"%(zrandompose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]You seem different of the typical ones."
 		"\i[92]%(zboredeyes)%(zsmile)%(arms)\i[101]\i[304]Usual Humans are so dumb..."
 		"%(zfrontpose)%(zexplainarms)%(zwonderingeyes)%(zsatisfiedsmile)\i[100]\i[304]You seem smarter than the others, \w5you must be an exception."
 	}
@@ -636,15 +636,15 @@ Select.ziminsult : nonoverlap
 				"\i[2001](You say he is too poorly disguised.)"
 			}
 			--
-			"\n\n[half]%(zpose)%(zwonderingface)%(zrelaxedarms)\i[100]\i[304]It worked pretty well until now."
-			"\n\n[half]%(zpose)%(zboredface)\i[100]%(zrelaxedarms)\i[63]\i[304]Humans are too dumb to notice anything."
+			"\n\n[half]%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zrelaxedarms)\i[100]\i[304]It worked pretty well until now."
+			"\n\n[half]%(zpose)%(zboredeyes)\i[100]%(zrelaxedarms)\i[63]\i[304]Humans are too dumb to notice anything."
 		}
 		{
 			"\i[2001](You tell him his disguise won't fool everybody forever.)"
 			"\i[2001](You tell him he is horrible.)"
 			"\i[2001](You say him he is doing a terrible job.)"
 			--
-			"\n\n[half]%(zpose)%(zboredface)\i[100]%(zexplainarms)\i[63]\i[304]I heard this a thousand times.\w7 Can't you do better?"
+			"\n\n[half]%(zpose)%(zboredeyes)\i[100]%(zexplainarms)\i[63]\i[304]I heard this a thousand times.\w7 Can't you do better?"
 		}
 		{
 			"\i[2001](You call him a dumb idiot.)"
@@ -661,7 +661,7 @@ Select.ziminsult : nonoverlap
 			--
 			"\n\n[half]"
 			--
-			"%(zfrontpose)%(zangryeyes)%(zsatisfiedsmile)%(zrelaxedarms)Nothing can stop me!"
+			"%(zfrontpose)%(zangryeyes)%(zsatisfiedsmile)%(zrelaxedarms)\i[100]\i[304]Nothing can stop me!"
 		}
 	}
 	else
@@ -707,7 +707,7 @@ Select.girinsult : nonoverlap
 		""
 		if worried != -1
 		{
-			"\n\n[half]%(zwonderingeyes)%(zsmile)%(zexplainarms)Why being mean with him?"
+			"\n\n[half]%(zwonderingeyes)%(zsmile)%(zexplainarms)\i[100]Why being mean with him?"
 			"\n\n[half]%(zboredeyes)%(zexplainarms)\i[65]\i[100]Stop it,\w5 he is about to cry."
 		}
 	}
@@ -726,7 +726,7 @@ Select.girinsult : nonoverlap
 		""
 		if worried != -1
 		{
-			"\n\n[half]%(zwonderingeyes)%(zsmile)%(zexplainarms)Why did you say that?\1"
+			"\n\n[half]%(zwonderingeyes)%(zsmile)%(zexplainarms)\i[100]Why did you say that?\1"
 			"\n\n[half]%(zboredeyes)%(zexplainarms)\i[65]\i[100]Stop it,\w5 you're making him sad.\1"
 		}
 	}
@@ -744,7 +744,7 @@ Select.girinsult : nonoverlap
 		if worried != -1
 		{
 			"%(gsadface)\n\n[half]%(zboredeyes)%(zexplainarms)\i[65]\i[100]That's mean.\1"
-			"%(gsadface)\n\n[half]%(zboredeyes)%(zexplainarms)He is just a normal dog.\1"
+			"%(gsadface)\n\n[half]%(zboredeyes)%(zexplainarms)\i[100]He is just a normal dog.\1"
 			"%(gsadface)\n\n[half]%(zboredeyes)%(zexplainarms)\i[65]\i[100]Stop it,\w5 you're making him sad.\1"
 		}
 	}
@@ -767,9 +767,9 @@ Select.givezimpresent : nonoverlap
 		{
 			"\i[2001](You give him %(schoolstuff).)\n\n[half]"
 			--
-			"%(zboredeyes)%(zrelaxearms)\i[92]\i[304]I already have some."
-			"%(zboredeyes)%(zrelaxearms)\i[92]\i[304]I already have this."
-			"%(zboredeyes)%(zrelaxearms)\i[92]\i[304]I may use it."
+			"%(zboredeyes)%(zrelaxearms)\i[100]\i[92]\i[304]I already have some."
+			"%(zboredeyes)%(zrelaxearms)\i[100]\i[92]\i[304]I already have this."
+			"%(zboredeyes)%(zrelaxearms)\i[100]\i[92]\i[304]I may use it."
 		}
 		{
 			"\i[2001](You give him %(shirt))"
@@ -795,10 +795,10 @@ Select.givezimpresent : nonoverlap
 			{
 				"\i[2001](You give him a %(countryflag) flag.)\n\n[half]"
 				--
-				"%(zpose)%(zwondering)\i[100]\i[304]What is this?"
-				"%(zpose)%(zwondering)\i[100]\i[304]What is this?\1%(gsatisfiedface)%(genthusiastarms)\i[92]Is it a towel?\0"
-				"%(zpose)%(zwondering)\i[100]\i[304]It has some nice colors."
-				"%(zpose)%(zwondering)\i[100]\i[304]Thanks?"
+				"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]What is this?"
+				"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]What is this?\1%(gsatisfiedface)%(genthusiastarms)\i[92]Is it a towel?\0"
+				"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]It has some nice colors."
+				"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Thanks?"
 				--
 				""
 				{
@@ -815,10 +815,10 @@ Select.givezimpresent : nonoverlap
 			{
 				"\i[2001](You give him a %(prideflag) flag.)\n\n[half]"
 				--
-				"%(zpose)%(zwondering)\i[100]\i[304]What is this?"
-				"%(zpose)%(zwondering)\i[100]\i[304]What is this?\1%(gsatisfiedface)%(genthusiastarms)\i[92]Is this a towel?\0"
-				"%(zpose)%(zwondering)\i[100]\i[304]It has some nice colors."
-				"%(zpose)%(zwondering)\i[100]Thanks?"
+				"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]What is this?"
+				"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]What is this?\1%(gsatisfiedface)%(genthusiastarms)\i[92]Is this a towel?\0"
+				"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]It has some nice colors."
+				"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]Thanks?"
 				--
 				""
 				{
@@ -832,8 +832,8 @@ Select.givezimpresent : nonoverlap
 		{
 			"\i[2001](You give him a human book.)\n\n[half]"
 			--
-			"%(zpose)%(zwondering)\i[100]\i[304]Some human knowledges?\w7%(zrandompose)\i[100]%(zplotting)Nice!"
-			"%(zpose)%(zwondering)\i[100]\i[304]Some human knowledges?\w7%(zrandompose)\i[100]%(zplotting)Thanks!"
+			"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Some human knowledges?\w7%(zrandompose)\i[100]%(zplotting)Nice!"
+			"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Some human knowledges?\w7%(zrandompose)\i[100]%(zplotting)Thanks!"
 		}
 		
 		{
@@ -847,7 +847,7 @@ Select.givezimpresent : nonoverlap
 	else
 	{
 		"\i[2001](You give him a pen.)%(zpose)\n\n[half]%(zboredface)\i[100]%(arms)\i[304]I have some already."
-		"\i[2001](You give him marbles)%(zpose)\n\n[half]%(zwondering)\i[100]\i[304]Mmh,\w5 \i[100]I suppose I can find them an utility... somehow."
+		"\i[2001](You give him marbles)%(zpose)\n\n[half]%(zwondering)\i[304]Mmh,\w5 \i[100]I suppose I can find them an utility... somehow."
 		"\i[2001](You give him some furnitures)%(zpose)\n\n[half]%(zboredeyes)%(zsmile)%(zrelaxedarms)\i[100]\i[304]Is this for skool?"
 	}
 	useraffection++
@@ -1107,7 +1107,7 @@ Select.infoDib
 		"\0%(zpose)%(zboredeyes)%(zrelaxedarms)%(zsmile)\i[100]\i[304]He is just a %(filthy) human."
 		"\0%(zfrontpose)%(zangryeyes)\i[100]%(zexplainarms)%(zsmile)\i[304]He is always ruining my plans."
 		"\0%(zsatisfied)\i[100]\i[92]\i[304]He is unable to stop %(zgreat)the great \f[italic,true]Ziiimmmmm*\f[italic,false]!"
-		"\0%(zsatisfied)\i[92]\i[304]He isn't an actual threat to my mission!"
+		"\0%(zsatisfied)\i[100]\i[92]\i[304]He isn't an actual threat to my mission!"
 	}
 	
 	{
@@ -1116,7 +1116,7 @@ Select.infoDib
 		"\0%(zrandompose)%(zangryeyes)\i[143]\i[193]%(zsmile)\i[100]\i[304]He is always annoying me."
 		"\0%(zpose)%(zboredeyes)%(arms)%(zsmile)\i[100]\i[304]He has a sister."
 		"\0%(zfrontpose)%(zwondering)\i[304]He likes supernatural stuff."
-		"\0%(zfrontpose)%(zwonderingface)%(zexplainarms)\i[100]\i[304]He believes in non-existing stuff!"
+		"\0%(zfrontpose)%(zwonderingeyes)%(zwonderingsmile)%(zexplainarms)\i[100]\i[304]He believes in non-existing stuff!"
 		"\0%(zsatisfied)\i[100]\i[92]\i[304]He is just a human worm."
 	}
 	--
@@ -1130,7 +1130,7 @@ Select.infoGaz
 		"\0%(zpose)%(zboredeyes)%(zrelaxedarms)%(zsmile)\i[100]\i[304]She is just a %(filthy) and scary human."
 		"\0%(zpose)%(zwondering)\i[304]She rarely ruins my plans."
 	}
-	"\0%(zpose)%(zboredeyes)%(zzingarms)%(zsmile)\i[100]\i[304]She is pretty weird."
+	"\0%(zpose)%(zboredeyes)%(zwonderingarms)%(zsmile)\i[100]\i[304]She is pretty weird."
 	"\0%(zpose)%(zboredeyes)%(zwonderingarms)%(zsmile)\i[100]\i[304]She is pretty scary."
 	"\0%(zpose)%(zboredeyes)%(zwonderingarms)%(zsmile)\i[100]\i[304]She likes video games."
 	"\0%(zpose)%(zboredeyes)%(arms)%(zsmile)\i[100]\i[304]She is Dib's sister."

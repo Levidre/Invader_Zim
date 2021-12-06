@@ -271,7 +271,7 @@ zeyes, geyes, zsmile, gsmile, arms
 zhappyface, zhappyeyes, zhappyarms
 ghappyface, ghappyeyes, ghappyarms
 
-zwonderingface, zwonderingeyes, zwonderingarms
+zwonderingface, zwonderingeyes, zwonderingarms, zwonderingsmile
 gwondering, gwonderingface, gwonderingarms
 zsatisfiedface, zsatisfiedeyes, zsatisfiedsmile
 gsatisfiedface

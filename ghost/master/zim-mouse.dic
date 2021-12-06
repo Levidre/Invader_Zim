@@ -403,8 +403,8 @@ MouseDoubleClickKero : nonoverlap
 				"\w8%(zrandompose)\i[100]%(zworriedface)\i[144]\i[194]Please don't hit him,\w7 it makes him cry."
 				if discovered != 1
 				{
-					"\w8%(zrandompose)\i[100]%(zwondering)Are human supposed to be violent with their pets?"
-					"\w8%(zrandompose)\i[100]%(zwondering)Are human supposed to be violent with dogs?"
+					"\w8%(zrandompose)\i[100]%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)Are human supposed to be violent with their pets?"
+					"\w8%(zrandompose)\i[100]%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)Are human supposed to be violent with dogs?"
 				}
 				else
 				{
