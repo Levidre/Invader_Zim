@@ -1,10 +1,12 @@
 fontinstaller.dll
 
 ----------------------------------------------------------------------------------------
-Utility : installing a font for the current user.
+Utility : checking a font is installed, modifying an installed font, installing or uninstalling a font for the current user. It's installing the font for the current user only.
 
 ----------------------------------------------------------------------------------------
 Usage : It's used with FUNCTIONEX("fontinstaller.dll",Arguments), you can use SAORI() instead of FUNCTIONEX() depending on your environnement.
+
+Keep in mind installing, deleting or modifying a font is touching Windows settings, thus asking the user before doing it is a good practice.
 
 ------
 Different commands are available :
@@ -27,13 +29,11 @@ Different commands are available :
 		Argument0 : "remove"
 		Argument1 : the name of the font
 		
+Windows generally uses the format "FontName (TrueType)" for .ttf and .otf fonts, you can use this format too to stick to Windows' format.
 
+Example : FUNCTIONEX("fontinstaller.dll", "install", "My Font (TrueType)", "path\to\the\font.ttf")
 
-An other argument "http" or "https" can be added as Argument1. In this case, Argument1 becomes Argument2 and Argument2 becomes Argument3.
-
-Example : FUNCTIONEX("filetransfer.dll","http","my-website/index.php","./my_files\a_file.txt")
 ------
-
 Version : 1.0
 Author : Azura Levidre
-		 https://azura-levidre.000webhostapp.com
+		 https://levidre.github.io/

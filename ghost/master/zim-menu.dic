@@ -92,17 +92,7 @@ MenuRun
 //Would run whatever you want.
 Select.testfunction
 {
-	//simultanateTalk("\1Hop a test\b2 at the same time. \w7Yay!!!\0\i[92]Hop a test at \i[96]%(zangryeyes)the same time. \w9\w9\w9\w9\w7Don't even start!\0")
-	//"Just before \w9\w9\w9[st]\1Hop a test at the same time. \w7Yay!!!\0\i[92]Hop a test at \i[96]%(zangryeyes)the same time. \w9\w9\w9\w9\w7Don't even start!\0[st]\1%(ghappy)Hahahaha this is fun!\w7 [st]\1Doom doom doom doom doom.\0Gir no again !"
-//"\i[301]hum"
-//isAnimationCompatible("\0\0\s[10]\0\i[115]\i[116]\i[127]\i[130]\i[52]\i[63]\i[42]\i[149]\i[199]\i[100]Maybe I could put drawing pins on his chair?\e")
-	
-	//"\0%(zpose)%(zgreat)\i[100]\i[99]\i[304]Soon\i[96] you will lay in despair!"
-
-	//_i += SAORI("saori/saori_test.dll","remove","Invader Modified")
-	//ARRAYSIZE(NeutralTalk)
-	//"\_?" + TOSTR(simultanateTalk("\1gir\0\w5%(zhappy)zim\1Un autre,\w5avec rien pour gir\1%(ghappy)\0rezim")) + "\_?"
-	_truc = 1; if _truc == 1;	"This is working"
+	BalloonSwitch(OnBoot)
 }
 
 Select.othertestfunction

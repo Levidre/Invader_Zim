@@ -28,6 +28,12 @@ OnBalloonChange
 {
 	balloonname = "%(reference0)"
 	balloonpath = "%(reference1)"
+	
+	if afterballoonswitch != ""
+	{
+		"%(afterballoonswitch)"
+		afterballoonswitch = ""
+	}
 }
 
 OnNotifyFontInfo
@@ -55,6 +61,30 @@ OnFirstBoot
 	{
 		OnFirstBootDialogue
 	}
+}
+
+BalloonSwitch
+{
+	afterballoonswitch = _argv
+	if ASEARCH("\irken_balloon_simplified", SPLIT(installedballoons,",")) != -1 && balloonname != "Irken Balloon Simplified"
+	{
+		"Simplified balloon detected, do you want to switch to it before continuing?\n\n[half]\![*]\q[Yes,switchtosimplified]     \![*]\q[No,withoutballoonswitch]"
+	}
+	else
+	{
+		ASEARCH("\irken_balloon_simplified", SPLIT(installedballoons,","))
+	}
+}
+
+Select.switchtosimplified
+{
+	"\![change,balloon,Irken Balloon Simplified]"
+}
+
+Select.withoutballoonswitch
+{
+	"%(afterballoonswitch)"
+	afterballoonswitch = ""
 }
 
 OnFirstBootDialogue
@@ -374,7 +404,7 @@ TimesslotBootDialogues
 			}
 			elseif timeslot == "lunch"
 			{
-				"\0%(znormalpose)%(zeyes)%(zsmile)%(zwonderingarms)\i[101]At least won't miss a lot,\w7 the cafetaria food was awful."
+				"\0%(znormalpose)%(zeyes)%(zsmile)%(zwonderingarms)\i[101]At least I won't miss a lot,\w7 the cafetaria food was awful."
 				"\0%(znormalpose)%(arms)\i[51]\i[100]\i[63]\i[119]\i[120]\i[127]\i[128]Saved from the skool food."
 			}
 			elseif timeslot == "afternoon"
@@ -448,7 +478,7 @@ TimesslotBootDialogues
 			}
 			elseif timeslot == "lunch"
 			{
-				"\0%(znormalpose)%(zeyes)%(zsmile)%(zrelaxedarms)\i[101]\i[149]At least I won't miss a lot,\w7 the cafetaria food was awful."
+				"\0%(znormalpose)%(zeyes)%(zsmile)\i[190]\i[101]\i[149]At least I won't miss a lot,\w7 the cafetaria food was awful."
 				"\0%(znormalpose)\i[50]\i[100]%(arms)\i[63]\i[119]\i[120]\i[127]\i[128]Saved from the skool food."
 			}
 			elseif timeslot == "afternoon"
@@ -1536,7 +1566,7 @@ Select.installallfonts
 
 Select.installirkenonly
 {
-	_j = SAORI("saori\fontinstaller","install","Irken Normal (TrueType)",balloonpath + "Irken.ttf")
+	_j = SAORI("saori\fontinstaller","install","Irken Normal (TrueType)", balloonpath + "Irken.ttf")
 
 	if "%(_j)" != ""
 	{

@@ -505,7 +505,7 @@ DiscoveredTalk
 		"\0%(zsidepose)%(zwonderingarms)%(zloog)%(zboredface)%(irken)Keep the food you're finding for yourself.%(irkens)"
 		"\0%(zsidepose)%(zwonderingarms)%(zloog)%(zboredface)%(irken)You should keep this food for later.%(irkens)"
 	}
-	
+		
 	--
 	"\e"
 	
@@ -624,6 +624,11 @@ AllyTalk
 		"%(zpose)\i[100]%(zboredface)%(zrelaxedarms)\i[304]I've an experiment to finish."
 		"%(zpose)\i[100]%(zsatisfiedface)%(zexplainarms)\i[304]Do you wanna watch my next experiment?"
 		"%(zpose)\i[100]%(zwonderingeyes)%(zwonderingsmile)%(zexplainarms)\i[304]I need a certain object.\1\w8%(ghappyface)%(genthusiastarms)\i[92]A bee?\w8\0%(zlookg)%(zboredeyes)%(zsmile)That's\i[105]\i[302] not an object."
+	}
+	
+	if useraffection >= 250 && zimpunched <= 0 && hastranslator == 0
+	{
+		"\0%(zpose)\i[100]%(zwondering)I was wondering.\w7 You cannot undertand us sometimes.\w7%(zexplainarms) So for you to be more valuable to us,\w5 I will give you a device so you can understand any order I'll give you.\n\n[half]\i[2001](He gives you some kind of device, you can use it to translate the irken dialect.)\![embed,OnActivateTranslator]"
 	}
 	
 	--

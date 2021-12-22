@@ -105,6 +105,14 @@ Select.askzimzim : nonoverlap
 {
 	if useraffection > 150 && discovered == 1
 	{
+		if isally
+		{
+			"\0%(zfrontpose)%(zplotting)\i[100]You've been wise to join me."
+			"\0%(zrandompose)%(zplotting)\i[100]I've been impressed by your choice to join me."
+			"\0%(zfrontpose)%(zplotting)\i[100]You're on the best side. My side."
+			"\0%(zfrontpose)%(zwondering)\i[100]How would a human friendship work here?"
+		}
+		
 		"\0%(zrandompose)%(zplotting)\i[100]\i[304]I see you can't get enough of my greatness.\w7%(zfrontpose)\i[100]%(zgreat) I'm the best invader."
 		"\0%(zrandompose)%(zgreat)\i[100]\i[99]\i[304]I'm the\i[96] best invader \_a[Irkens]Irk\_a has ever known!"
 		"\0%(zrandompose)%(zplotting)\i[100]\i[304]One day all your species will kneel before my greatness!"
@@ -122,6 +130,7 @@ Select.askzimzim : nonoverlap
 		"\0%(zpose)%(zhappy)\i[100]\i[304]I'm the great Zim,\w5%(zsatisfied) futur ruler of the Earth."
 		"\0%(zpose)%(zhappy)\i[100]\i[304]I'm the great Zim,\w5 %(zsatisfied)futur ruler of your world."
 		"\0%(zbackpose)%(zgreat)\i[100]\i[99]\i[304]I'm \i[96]the amazing Zim!!!"
+		"\0%(zrandomepose)%(zplotting)\i[100]\i[304]You're never gonna know any of my secrets!"
 	}
 	else
 	{
@@ -143,6 +152,29 @@ Select.askzimgir : nonoverlap
 {
 	if useraffection > 150 && discovered == 1
 	{
+		if disguised == 1
+		{
+			"\0%(zpose)%(zboredeyes)%(zexplainarms)\i[100]%(zsmile)\i[304]He is a[st]%(gsatisfied)Am a dog!\0.\w1.\w1. Huuuuhhhh\w1.\w1.\w1[st]\0\n\n[half]Sigh...\w7 He is[st]\0 my\w1.\w1.\w1 Can I talk?\1\n \f[italic,true] \n[half]%(ghappy)D\i[96]oogggyyy!!! \f[italic,false][st]\0\n\n[half]Just my robot sidekick, \w5%(zangryeyes)not an actual dog."
+		}
+		
+		if isally
+		{
+			"\0%(zfrontpose)%(zwondering)\i[100]Maybe you could do some things for me instead of him?"
+			"\0%(zfrontpose)%(zwondering)%(zlookg)I could give you some missions instead of giving them to him."
+			"\0%(zfrontpose)%(zwondering)%(zlookg)You could replace him for some tasks.\w8\1\i[92]%(gcryface)%(arms)Replace?\0\w8\n\n[half]Not for everything though.\w8\1\n\n[half]%(gsatisfied)Ahhh..."
+			"\0%(zfrontpose)%(zplotting)\i[100]A sidekick like you would compensate%(zlookg) his...\w8\1\i[96]%(gsatisfied)Piggies!!!\0 erratic behavior."
+			"\0%(zrandompose)%(zsatisfied)\i[100]He asked about you."
+			"\0%(zrandompose)%(zsatisfied)\i[100]He made more waffles to share here but he forgot them."
+			"\0%(zrandompose)%(zsatisfied)\i[100]He wants to cook for you."
+		}
+		
+		if findgircute
+		{
+			"\0%(znormalpose)%(zplotting)\i[100]Why do you find him cute?"
+			"\0%(znormalpose)%(zplotting)\i[100]What makes you find something cute?"
+			"\0%(znormalpose)%(zplotting)\i[100]What features makes him... cute?"
+		}
+		
 		"\0%(zpose)%(zsatisfied)\i[100]\i[304]He loves food,\w5 you know."
 		"\0%(zpose)%(zsatisfiedface)\i[100]%(zrelaxedarms)\i[304]Don't you have some food to please him?"
 		"\0%(zpose)%(zsatisfiedsmile)%(zwonderingeyes)\i[100]%(zrelaxedarms)\i[304]Do you have some cookies to keep him calm for a moment?\1\i[92]%(ghappy)Yeah!\w7 Cookies!"
@@ -150,14 +182,15 @@ Select.askzimgir : nonoverlap
 		"\0%(zpose)%(zsatisfiedface)%(zexplainarms)\i[100]\i[304]He destroys stuff but generally not the right ones."
 		"\0%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zrelaxedarms)\i[100]\i[92]\i[304]Did I mention he isn't my only sidekick?"
 		"\0%(zpose)%(zsatisfied)\i[100]\i[304]He is a special model of SIR unit."
-		if disguised == 1
-		{
-			"\0%(zpose)%(zboredeyes)%(zexplainarms)\i[100]%(zsmile)\i[304]He is a[st]%(gsatisfied)Am a dog!\0.\w1.\w1. Huuuuhhhh\w1.\w1.\w1[st]\0\n\n[half]Sigh...\w7 He is[st]\0 my\w1.\w1.\w1 Can I talk?\1\n \f[italic,true] \n[half]%(ghappy)D\i[96]oogggyyy!!! \f[italic,false][st]\0\n\n[half]Just my robot sidekick, \w5%(zangryeyes)not an actual dog."
-		}
 		
 	}
 	elseif discovered == 1
 	{
+		if findgircute
+		{
+			"\0%(znormalpose)%(zboredface)%(arms)\i[100]You told me you find him cute."
+		}
+		
 		"\0%(zrandomepose)\i[100]%(zwonderingeyes)%(arms)%(zsmile)\i[304]He is here to serve me."
 		"\0%(zrandompose)%(arms)%(zsmile)\i[100]%(zboredeyes)\i[304]He is my robot slave.\w7%(zlookg)%(zrelaxedarms) Even if he isn't always useful."
 		"\0%(zpose)%(zrelaxedarms)\i[100]%(zboredeyes)%(zlookg)\i[63]\i[304]Not the best robot,\w5%(zexplainarms) \i[105]\i[302]but he will always be superior to anything you have on this filthy planet."
@@ -168,6 +201,12 @@ Select.askzimgir : nonoverlap
 	}
 	else
 	{
+		if findgircute
+		{
+			"\0%(znormalpose)%(zwondering)\i[100]When are you gonna surrender to me thanks to his cuteness?"
+			"\0%(znormalpose)%(zboredface)%(arms)\i[100]You told me you find him cute."
+		}
+		
 		"\0%(zpose)%(zsatisfiedface)%(zexplainarms)\i[100]\i[304]It's just a normal dog."
 		"\0%(zpose)%(zsatisfied)\i[100]\i[304]It's my dog."
 		"\0%(zpose)%(zsatisfied)\i[100]\i[304]Just a filthy dog."
@@ -226,6 +265,11 @@ Select.askgirgir : nonoverlap
 {
 	if useraffection > 150 && discovered == 1
 	{
+		if isally
+		{
+			"\1\i[92]%(gsatisfied)Can I hug you?"
+			"\1\i[92]%(gsatisfied)You're friiieeeend."
+		}
 		{
 			"\1\i[96]%(ghappy)I've a lot of friends!"
 			"\1\i[96]%(gsatisfied)Wanna be my friend?"
