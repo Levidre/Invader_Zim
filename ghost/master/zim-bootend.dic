@@ -59,7 +59,9 @@ OnFirstBoot
 	}
 	else
 	{
-		OnFirstBootDialogue
+		"\1\s[-1]\0\s[-1]"
+		--
+		BalloonSwitch(OnFirstBootDialogue)
 	}
 }
 
@@ -72,7 +74,7 @@ BalloonSwitch
 	}
 	else
 	{
-		ASEARCH("\irken_balloon_simplified", SPLIT(installedballoons,","))
+		"%(afterballoonswitch)"
 	}
 }
 
@@ -1528,7 +1530,7 @@ Select.nofont
 	"(The Irken talks will be locked until it's installed for this user.)\n\n[half]"
 	hastranslator = -1
 	--
-	OnFirstBootDialogue
+	BalloonSwitch(OnFirstBootDialogue)
 }
 
 Select.installallfonts
@@ -1560,7 +1562,7 @@ Select.installallfonts
 	--
 	if username == "TEMPUSER"
 	{
-		OnFirstBootDialogue
+		BalloonSwitch(OnFirstBootDialogue)
 	}
 }
 
@@ -1580,6 +1582,6 @@ Select.installirkenonly
 	--
 	if username == "TEMPUSER"
 	{
-		OnFirstBootDialogue
+		BalloonSwitch(OnFirstBootDialogue)
 	}
 }
