@@ -92,7 +92,8 @@ MenuRun
 //Would run whatever you want.
 Select.testfunction
 {
-	BalloonSwitch(OnBoot)
+	OnFirstBoot
+	//BalloonSwitch(OnBoot)
 }
 
 Select.othertestfunction
