@@ -822,11 +822,11 @@ Select.givezimpresent : nonoverlap
 			--
 			{
 				{
-					"\1\w8%(ghappyface)Can I have it?\0\w8\%(zpose)%(zlookg)%(zeyes)%(zsmile)%(zrelaxedarms)No,\w5 %(heshe) gave it to me."
-					"\1\w8%(ghappyface)Can I eat it?\0\w8\%(zpose)%(zlookg)%(zeyes)%(zsmile)%(zrelaxedarms)No,\w5 it's not edible."
+					"\1\w8%(ghappyface)Can I have it?\0\n\n[half]\w8\%(zpose)%(zlookg)%(zeyes)%(zsmile)%(zrelaxedarms)No,\w5 %(heshe) gave it to me."
+					"\1\w8%(ghappyface)Can I eat it?\0\n\n[half]\w8\%(zpose)%(zlookg)%(zeyes)%(zsmile)%(zrelaxedarms)No,\w5 it's not edible."
 				}
 				
-				"\w8%(zboredeyes)\1%(gsadface)Aww..."
+				"\w8%(zboredeyes)\n\n[half]\1%(gsadface)Aww..."
 			}
 			"\n\n[half]\i[2001](You say it's to look more human.)"
 			"\n\n[half]\i[2001](You say it's to look more normal.)"
@@ -876,15 +876,15 @@ Select.givezimpresent : nonoverlap
 		{
 			"\i[2001](You give him a human book.)\n\n[half]"
 			--
-			"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Some human knowledges?\w7%(zrandompose)\i[100]%(zplotting)Nice!"
-			"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Some human knowledges?\w7%(zrandompose)\i[100]%(zplotting)Thanks!"
+			"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Some human knowledges?\w7%(zrandompose)\i[100]%(zplotting) Nice!"
+			"%(zpose)%(zwonderingeyes)%(zwonderingsmile)%(zwonderingarms)\i[100]\i[304]Some human knowledges?\w7%(zrandompose)\i[100]%(zplotting) Thanks!"
 		}
 		
 		{
 			"\i[2001](You give him a CD.)"
 			"\i[2001](You give him a DVD.)"
 			--
-			"%(zpose)%(zboredeyes)%(zlookg)%(zexplainarms)\i[66]\i[304]Here something to watch,\w5 GIR.\1%(ghappy)\i[96]Yay!"
+			"%(zpose)%(zboredeyes)%(zlookg)%(zexplainarms)\n\n[half]\i[66]\i[304]Here something to watch,\w5 GIR.\1%(ghappy)\i[96]Yay!"
 		}
 		//"\i[2001](You give him some silverway.)"
 	}

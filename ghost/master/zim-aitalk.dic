@@ -141,7 +141,7 @@ RandomTalk
 			
 			if discovered == 1
 			{
-				if cumuhour >= 50 && isally == 0
+				if (cumuhour >= 50 || nbdays >= 5) && isally == 0
 				{
 					if zimpunched <= 2
 					{
@@ -194,20 +194,20 @@ NeutralTalk
 			"\0\i[92]\i[304]%(zboredeyes)%(zsmile)Why did you make me come here anyway?"
 		}
 		
-		if cumuhour > 300
+		if (cumuhour > 300 || nbdays >= 10)
 		{
 			"%(zwondering)\i[2001](He is totally used to your desktop.)"
 			"%(zwondering)\i[2001](He seems pretty at ease on a computer.)"
 			"%(zwondering)\i[2001](He seems at ease now.)"
 		}
-		elseif cumuhour > 48
+		elseif (cumuhour > 48 || nbdays >= 5)
 		{
 			"%(zwondering)\i[2001](He seems more used to your desktop.)"
 			"%(zwondering)\i[2001](He gives a folder a look.)"
 			"%(zwondering)\i[2001](He gives a file a look.)"
 			"%(zwondering)\i[2001](He is staring at a file.)"
 		}
-		elseif cummuhour > 10
+		elseif (cummuhour > 10 || nbdays >= 2)
 		{
 			"%(zwondering)\i[2001](He gives a folder an unsure look.)"
 			"%(zwondering)\i[2001](He gives a file an unsure look.)"
@@ -221,15 +221,15 @@ NeutralTalk
 			"%(zwondering)\i[2001](He is curiously looking around.)"
 		}
 		
-		if cumuhour > 6 && toldcomputer == 0
+		if (cumuhour > 6 || nbdays >= 2) && toldcomputer == 0
 		{
 			"\0%(zpose)%(zwondering)\i[304]It's a so weird place.\n\n[half]\i[2001](Tell him about your computer?)\n\n[half]\![*]\q[Yes,tellcomputer1]     \![*]\q[No,close]"
 		}
-		elseif cumuhour > 16 && toldcomputer == 1
+		elseif (cumuhour > 16 || nbdays >= 3) && toldcomputer == 1
 		{
 			"\0%(zwondering)\i[304]Can I take a %(fileextent)?\w7\i[100]%(zexplainarms) It's for...\w5 \i[125]\i[126]to satisfy my curiosity?\n\n[half]\i[2001](You explain him clearly that he isn't allowed to take anything you have on your computer or to touch anything.)\n\n[half]\i[92]%(zwonderingeyes)Not even a %(fileextent)?\n\n[half]\i[2001](You reiterate your no.)\n\n[half]%(zboredface)\i[92]Fine,\w5 I stop insisting.\![ember,OnTellcomputer2]"
 		}
-		elseif cumuhour > 24 && toldcomputer == 2
+		elseif (cumuhour > 24 || nbdays >= 4) && toldcomputer == 2
 		{
 			"\0%(zrandompose)%(zwondering)\i[304]Since I'm on your computer,\w5 what am I here?\n\n[half]\i[2001](Tell him what he is?)\n\n[half]\![*]\q[Yes,tellcomputer3]     \![*]\q[Let him ignorant,tellcomputer3no]"
 		}
@@ -243,6 +243,9 @@ NeutralTalk
 			"\0%(zwondering)%(irken)\i[92]\i[304]It looks so different from our computer from the inside.\i[105]\i[302]%(irkens)"
 			"\0%(zfrontpose)%(zexplainarms)%(zwonderingeyes)%(zwonderingsmile)\i[100]Is your computer having an AI?"
 			"\0%(zfrontpose)%(zexplainarms)%(zwonderingeyes)%(zwonderingsmile)\i[100]Can your computer respond to vocal commands?"
+			"\0%(zpose)%(zwondering)How smart is your computer?"
+			"\0%(zpose)%(zwondering)How is the voice of your computer?"
+			"\0%(zpose)%(zwondering)Is your computer's AI useful?"
 		}
 		elseif toldcomputer >= 1
 		{
@@ -254,6 +257,7 @@ NeutralTalk
 			"\0%(zplotting)\i[92]Are humans dependant of those... computers?"
 			"\0%(zwondering)%(irken)\i[92]Mmh,\w5 could I modify some files?\1%(arms)%(gsatisfiedface)%(irken)\i[92]I dunno.%(irkens)"
 			"\0%(zwondering)%(irken)\i[92]It looks so different from our computer from the inside.%(irkens)"
+			"\0%(zpose)%(zwondering)How advanced would you say your computer is?"
 			
 		}
 		elseif toldcomputer == 0
@@ -439,6 +443,8 @@ DiscoveredTalk
 	"\0%(irken)%(zpose)%(zwonderingeyes)\i[102]%(zrelaxedarms)%(zsmile)\i[304]GIR,\w5 keep observing %(himher) while we're here.%(irkens)"
 	"\0%(irken)%(zpose)%(zwonderingeyes)\i[102]%(zrelaxedarms)%(zsmile)\i[304]GIR,\w5 keep observing %(himher) while we're here.\w8\1%(gdutypose)%(gobey)%(irken)\i[96]Yes master!%(irkens)\![embed,OnGirDuty]"
 	"\0%(irken)%(zbackpose)%(zgreat)\i[100]\i[99]Mwah\i[96]ahahahahah!!!\n\i[301]\i[105]I got a %(amazing) plan idea!\n\n[half]\i[2001]%(irkens)(He is noting something down.)"
+	
+	"\0%(zwondering)What did the computer said again?"
 	
 	
 	if zimpunched == 0
@@ -998,23 +1004,16 @@ OnSecondChange
 	if passsec == 60
  	{
 	 	passsec = 0
- 		passmin = passmin + 1
+ 		passmin++
 	}
- 	else
- 	{
-	 	passsec = passsec + 1
-	}
-	--
+	passsec++
 	if passmin == 60
 	{
-		passhour = passhour + 1
+		passhour++
 		passmin = 0
-		cumuhour = cumuhour + 1
+		cumuhour++
 	}
-	if mikireflag == 1 && reference1 == 0
-	{
-		EndMikireTalk
- 	}
+	if mikireflag == 1 && reference1 == 0 ; EndMikireTalk
 	mikireflag = reference1
 	if reference2 == 1
 	{
@@ -1062,13 +1061,7 @@ OnSecondChange
 		}
 		pickedupgir++
 	}
-	else
-	{
-		pickedupgir--
-	}
-	
-	
-	
+	else ; pickedupgir--
  }
  
  
@@ -1098,9 +1091,6 @@ OnSurfaceRestore
  {
 	"%(defaultpose)"
  }
-
- //snooping through your stuff--------------------------------------------------
- 
 
 
  //--OnKeyPress

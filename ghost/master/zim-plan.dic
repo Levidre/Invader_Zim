@@ -6,7 +6,7 @@ zimgoodplanproposition
 	"Rule the Earth,ruleearth"
 	"Subject the skool kids,subjectkids"
 	"Take the control of governements,controlgovernements"
-	"Create a portal to bring the armada,bringarmada"
+	"Create a portal for the armada,bringarmada"
 	--
 	"]"
 }
@@ -41,7 +41,7 @@ Select.destroygovernements
 	"%(zrandompose)%(zwondering)To create chaos among humans?%(zplotting)\w7 Brilliant!"
 	"%(zpose)\i[100]%(zplotting)This could make humanity very vulnerable...\n%(zbackpose)\i[100]%(zgreatface)%(zpowerfularms)\nHehehe..."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.ruleearth
 {
@@ -50,26 +50,26 @@ Select.ruleearth
 	"%(zfrontpose)\i[100]%(zsatisfied)I will eventually rule the Earth anyway!"
 	
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.subjectkids
 {
 	"%(zpose)\i[100]%(zplotting)An army of worms is still an army.\w7 %(zsatisfied)It would be a good beginning."
 	"%(zpose)\i[100]%(zplotting)I could use them to manipulate their guardians too..."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.controlgovernements
 {
 	"%(zfrontpose)\i[100]%(zplotting)The rulers of the Earth? \w7%(zexplainarms)That's one way to take control of this %(filthy) planet."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.bringarmada
 {
 	"%(zfrontpose)\i[100]%(zplotting)Those %(filthy) humans won't stand a chance against it.\w7 %(zgreat)And creating a portal is something easy for someone as great as me!"
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 
 Select.fillplanetcandies
@@ -77,7 +77,7 @@ Select.fillplanetcandies
 	"%(zfrontpose)\i[100]%(zboredface)%(zrelaxedarms)Someone already thought of this plan."
 	"%(zfrontpose)\i[100]%(zboredface)%(zrelaxedarms)I've already heard this plan,\w5 there are better ones."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.studyhuman
 {
@@ -88,7 +88,7 @@ Select.studyhuman
 		"%(zfrontpose)%(zangryeyes)\i[62]\i[143]\i[193]\i[100]Can I start by you?"
 	}
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.studyearth
 {
@@ -96,14 +96,14 @@ Select.studyearth
 	"%(zfrontpose)\i[100]%(zboredface)%(zexplainarms)This planet has nothing interesting."
 	"%(zfrontpose)\i[100]%(zboredface)%(zexplainarms)I'm already doing it."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.experimenthuman
 {
 	"%(zfrontpose)\i[100]%(zboredeyes)%(zsatisfiedsmile)%(zexplainarms)I've already done some experiments on them."
 	"%(zfrontpose)\i[100]%(zboredeyes)%(zsatisfiedsmile)%(zexplainarms)That's part of my duty."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.zimadoptdog
 {
@@ -111,7 +111,7 @@ Select.zimadoptdog
 	"%(zlookg)\i[92]%(zsuspiciousface)GIR is cleaner!"
 	"%(zfrontpose)\i[100]%(zsuspiciousface)%(zrelaxedarms)They are as %(filthy) as the humans."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 
 
@@ -120,14 +120,14 @@ Select.nuclearbomb
 	"%(zrandompose)\i[100]%(zboredface)%(zexplainarms)That would be a waste of resources."
 	"%(zrandompose)\i[100]%(zboredface)%(zexplainarms)It would destroy the few resources this %(filthy) planet has."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.buildrobot
 {
 	"%(zrandompose)\i[100]%(zboredface)%(zexplainarms)Human's technologie is too few advanced for me to create a giant robot."
 	"%(zrandompose)\i[100]%(zboredface)%(zexplainarms)Bringing the necessary irken technologie would be too bothering."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.turngirintobomb
 {
@@ -135,28 +135,28 @@ Select.turngirintobomb
 	"%(zposenormal)%(zlookg)%(zboredface)%(zrelaxedarms)He would be ready to destroy the base anytime.\1%(ghappyface)Yeeeesssss..."
 	"%(zposenormal)%(zlookg)%(zboredface)%(zrelaxedarms)Not a good idea for him.\1%(gsadface)Aww..."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.makegirexplode
 {
 	"\1%(gpose)%(gwonderingarms)%(gwonderingeyes)%(ghappysmile)Can I?\0\w8%(zposenormal)%(zlookg)%(zboredface)%(zrelaxedarms)No.\w8\1%(gsadface)\n\n[half]Aww...."
 	"%(zposenormal)%(zlookg)%(zboredface)%(zrelaxedarms)I could need him.\1%(ghappyface)"
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.makezimexplode
 {
 	"%(zfrontpose)\i[100]%(zsatisfiedface)%(zexplainarms)And who would rule the Earth?\w7 %(zrelaxedarms)I must stay alive."
 	"%(zfrontnormal)\i[100]%(zgreat)I'm too great for this kind of suicidal plans."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.zimbefriendschoolkids
 {
 	"%(zfacepalmface)\i[100]\i[92]Me being friend with those morons?\w7 No."
 	"%(zfacepalmface)\i[100]\i[92]They are too %(filthy)."
 	--
-	"\0\n\n\n[half]\![*]\q[Do something else,actzimmenu]     \![*]\q[Nevermind,close]"
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////:
@@ -198,77 +198,77 @@ Select.conquerpiggies
 {
 	"\0%(zlookgirl)%(zsatisfiedsmile)%(zboredeyes)\1%(ghappy)\i[96]Yaayyy!!!\w7 Piggies are the best!"
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 	
 }
 Select.usecupcake
 {
 	"%(zwondering)\1%(gwondering)\i[92]Could I use them to befriend everybody?"
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.cookforpeople
 {
 	"\1%(ghappy)\i[96]Yay!\0%(zwondering)Poisoning's a good idea."
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.girbefriendschoolkids
 {
 	"\1%(ghappy)\i[96]More friends!!!"
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 
 Select.followzim
 {
 	"\1%(genthusiastarms)%(ghappyeyes)\i[68]\i[92]Oohh yeah...."
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.watchtelevision
 {
 	"\1%(gsatisfiedface)\i[92]I like television."
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.spyhumans
 {
 	"\1%(gsatisfiedface)\i[92]Can I go in their house?\w8\0%(zsidepose)%(zangryeyes)%(zsmile)%(zlookg)%(zrelaxedarms)No."
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.spyschoolkids
 {
 	"\1%(gsatisfiedface)\i[92]Would I go to skool?\w8\0%(zsidepose)%(zangryeyes)%(zsmile)%(zlookg)%(zrelaxedarms)No."
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.giradoptdog
 {
 	"%(zfrontpose)%(zangryeyes)%(zsmile)%(zexplainarms)\i[100]No! \w7He wouldn't even know how to take care of it!\w8\1%(gsadface)\i[92]Aww..."
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 
 Select.girexplode
 {
 	"\0%(zangry)%(zlookg)Don't even think of it!\w8\1%(gsadface)\i[92]Aww..."
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 	
 }
 Select.destroytacos
 {
 	"\1%(gcryface)%(arms)\i[92]I don't want all tacos to disappear!"
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 Select.piggiesexplode
 {
 	"\1%(gcryface)%(arms)\i[92]But piggies are nice..."
 	--
-	"\1\n\n\n[half]\![*]\q[Do something else,actgirmenu]     \![*]\q[Nevermind,close]"
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 
 OnZimProposePlan
@@ -305,6 +305,8 @@ OnZimProposePlan
 		"Heh,\w5 %(_writenlist)... sounds interesting."
 		"Mmh,\w5 %(_writenlist)... It may be of use."
 	}
+	--
+	"\0\n\n\n[half]\![*]\q[Propose an other,zimproposeplan]     \![*]\q[Nevermind,close]"
 }
 
 OnGirProposePlan
@@ -341,6 +343,8 @@ OnGirProposePlan
 		"You said %(_writenlist)..."
 		"This %(_writenlist) plan could be of use."
 	}
+	--
+	"\1\n\n\n[half]\![*]\q[Propose an other,girproposeplan]     \![*]\q[Nevermind,close]"
 }
 
 FoundInterestingWords

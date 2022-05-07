@@ -69,7 +69,7 @@ MouseMoveSakura
 					"%(zangry)\i[96]I'm not your pet!"
 					"%(zangry)\i[96]I'm not one of your %(filthy) pets!"
 					"%(zangryface)\i[144]\i[194]\i[92]How dare you petting a superior being!"
-					"%(zfrontpose)%(zsuspiciousface)%(zangryarms)Keep your touching thingy for yourself!"
+					"%(zfrontpose)%(zsuspiciousface)%(zangryarms)\i[100]Keep your touching thingy for yourself!"
 				}
 				else
 				{

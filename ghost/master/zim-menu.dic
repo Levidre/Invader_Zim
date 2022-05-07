@@ -652,7 +652,7 @@ Select.TALKNORMAL
 {
 	talktime = "3 minutes"
 	aitalkinterval = 270
-	"\0%(zpose)%(zboredeyes)%(zwonderingarms)%(zsmile)\i{[101]I will speak every three minutes.\w7 %(zrelaxedarms)That's a good rhythme.\e"
+	"\0%(zpose)%(zboredeyes)%(zwonderingarms)%(zsmile)\i[101]I will speak every three minutes.\w7 %(zrelaxedarms)That's a good rhythme.\e"
 }
 Select.TALKPOOR
 {
